@@ -17,26 +17,14 @@ It’s built to be **responsive, modern, and easy to navigate**.
 ## 🛠️ Tech Stack
 - **HTML5** – structure
 - **CSS3** – styling (Flexbox/Grid, animations)
-- **JavaScript (ES6+)** – interactivity  
-*(Update this if you used React, Tailwind, Vite, etc.)*
 
 ---
 
 ## 🚀 Live Demo
-👉 [View Portfolio](https://your-username.github.io/portfolio/)  
+👉 [View Portfolio](https://ansabazys.github.io/portfolio/)  
 
 ---
 
-## 📂 Project Structure
-portfolio/
-│── index.html
-│── style.css
-│── assets/
-│ ├── images/
-│── README.md
-
-
----
 
 ## 📸 Screenshots
 
