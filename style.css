@@ -465,4 +465,10 @@ textarea:focus {
     padding: 0;
     padding-bottom: 5rem;
   }
+
+main > p {
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
 }
