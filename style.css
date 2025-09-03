@@ -239,7 +239,7 @@ progress::-webkit-progress-value {
 }
 
 .contact__container {
-  padding: 5rem 0;
+  padding-top: 5rem;
   height: 100vh;
 }
 
@@ -434,7 +434,7 @@ textarea:focus {
   }
 
   .contact__container {
-    padding: 0;
+    padding: 1rem;
     width: 100%;
   }
 
@@ -464,11 +464,6 @@ textarea:focus {
   .projects__container {
     padding: 0;
     padding-bottom: 5rem;
-  }
-
-main > p {
-    text-align: center;
-    padding-bottom: 1rem;
   }
 
 }
