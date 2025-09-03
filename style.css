@@ -148,10 +148,11 @@ h4 {
 }
 
 .skills__container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding: 5rem 0;
+  gap: 5rem;
 }
 
 .skills__container h4 {
@@ -375,6 +376,8 @@ textarea:focus {
     font-size: 1.4rem;
   }
 
+
+
   .skills__container h3 {
     font-size: 1.4rem;
     text-align: left;
@@ -451,7 +454,7 @@ textarea:focus {
 
   .contact__content .contact__place {
     grid-area: 1 / 1 / 3 / 3;
-    padding-bottom: 2rem;
+    padding-bottom: 10rem;
   }
 
   .contact__content form {
