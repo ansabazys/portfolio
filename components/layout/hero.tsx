@@ -97,7 +97,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export default function UnderConstruction() {
+export default function Hero() {
   const paragraphRef = useRef<HTMLParagraphElement | null>(null);
 
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function UnderConstruction() {
     paragraph.innerHTML = "";
     words.forEach((word, i) => {
       const span = document.createElement("span");
-      span.className = "inline-block mr-1 opacity-0 translate-y-6";
+      span.className = "inline-block mr-1 opacity-0 blur-sm";
       span.textContent = word;
       paragraph.appendChild(span);
       if (i < words.length - 1)
@@ -120,22 +120,27 @@ export default function UnderConstruction() {
 
     const wordElements = paragraph.querySelectorAll("span");
 
+    // GSAP animation: fade in + blur remove + slight upward movement
     gsap.to(wordElements, {
       y: 0,
       opacity: 1,
-      duration: 1,
+      filter: "blur(0px)",
+      duration: 0.5,
       ease: "power2.out",
-      stagger: 0.1, // stagger words
+      stagger: 0.1,
     });
   }, []);
 
   return (
     <div className="h-screen flex flex-col items-center justify-center px-4 text-center">
       <h1 className="text-4xl md:text-6xl font-bold mb-6">🚧</h1>
-      <p ref={paragraphRef} className="text-lg md:text-2xl max-w-3xl">
+      <p
+        ref={paragraphRef}
+        className="text-lg md:text-2xl max-w-xl  translate-y-2"
+      >
         Thanks for visiting! My portfolio is under construction as I gather all
         my projects and refine the design. I can’t wait to share my work with
-        you, stay tuned for the full experience!
+        you — stay tuned for the full experience!
       </p>
     </div>
   );

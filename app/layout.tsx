@@ -42,9 +42,9 @@ export default function RootLayout({
             <BgParticles />
           </div>
 
-          <div className="relative z-30">
+          {/* <div className="relative z-30">
             <Header />
-          </div>
+          </div> */}
 
           <LenisProvider>{children}</LenisProvider>
         </ThemeProvider>
