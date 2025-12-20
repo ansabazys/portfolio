@@ -1,6 +1,4 @@
-import Image from "next/image";
-import hero from "../public/hero.png";
-import Hero, { DemoVariant1 } from "@/components/layout/hero";
+import DemoVariant1 from "@/components/layout/hero";
 
 export default function Home() {
   return (
