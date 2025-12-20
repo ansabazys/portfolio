@@ -8,12 +8,13 @@ const DemoVariant1 = () => {
       {/* Gradient Background */}
       <AnimatedGradientBackground />
 
-      <div className="relative z-10 flex flex-col items-center justify-start h-full px-4 pt-32 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         <div>
           <DotLottieReact
             src="https://lottie.host/8cf4ba71-e5fb-44f3-8134-178c4d389417/0CCsdcgNIP.json"
             loop
             autoplay
+            width="300px"
           />
         </div>
         <div>
