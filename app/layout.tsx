@@ -41,8 +41,8 @@ export default function RootLayout({
           <div className="fixed inset-0 z-0 w-full h-full overflow-hidden">
             <BgParticles />
           </div>
-
-          {/* <div className="relative z-30">
+{/* 
+          <div className="relative z-30">
             <Header />
           </div> */}
 
