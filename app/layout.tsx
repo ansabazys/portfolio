@@ -38,9 +38,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${shadowsIntoLight.variable} dark:bg-[#0a0a0a] bg-[#f4f4f4] ${geistMono.variable} antialiased `}
       >
         <ThemeProvider attribute="class" enableSystem={true}>
-          <div className="fixed inset-0 z-0 w-full h-full overflow-hidden">
+          {/* <div className="fixed inset-0 z-0 w-full h-full overflow-hidden">
             <BgParticles />
-          </div>
+          </div> */}
 {/* 
           <div className="relative z-30">
             <Header />
