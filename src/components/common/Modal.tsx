@@ -9,7 +9,7 @@ import {
   Sun,
 } from "lucide-react";
 import { useState } from "react";
-// import { TextAnimate } from "../ui/text-animate";
+import { TextAnimate } from "../ui/text-animate";
 import Link from "next/link";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 
@@ -34,22 +34,22 @@ export default function MenuModal() {
               <div className="p-5  text-left flex flex-col gap-10 ">
                 <div className="flex flex-col gap-1 text-2xl">
                   <Link href="/about">
-                    {/* <TextAnimate animation="blurInUp">ABOUT</TextAnimate> */}
+                    <TextAnimate animation="blurInUp">ABOUT</TextAnimate>
                   </Link>
                   <Link href="/project">
-                    {/* <TextAnimate animation="blurInUp">PROJECTS</TextAnimate> */}
+                    <TextAnimate animation="blurInUp">PROJECTS</TextAnimate>
                   </Link>
                   <Link href="/blog">
-                    {/* <TextAnimate animation="blurInUp">BLOG</TextAnimate> */}
+                    <TextAnimate animation="blurInUp">BLOG</TextAnimate>
                   </Link>
                   <Link href="/contact">
-                    {/* <TextAnimate animation="blurInUp">CONTACT</TextAnimate> */}
+                    <TextAnimate animation="blurInUp">CONTACT</TextAnimate>
                   </Link>
                 </div>
                 <div className="flex flex-col gap-3">
-                  {/* <TextAnimate className="text-sm font-light text-neutral-400">
+                  <TextAnimate className="text-sm font-light text-neutral-400">
                     SOCIALS
-                  </TextAnimate> */}
+                  </TextAnimate>
                   <div className="flex gap-5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +116,9 @@ export default function MenuModal() {
                   </div>
                 </div>
                 <div className="flex gap-2 flex-col">
-                  {/* <TextAnimate className="text-sm font-light text-neutral-400">
+                  <TextAnimate className="text-sm font-light text-neutral-400">
                     THEME
-                  </TextAnimate> */}
+                  </TextAnimate>
                   <div>
                     <AnimatedThemeToggler  />
                   </div>
