@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-// import Logo from "../../public/logo2.svg";
+import Logo from "../../../public/logo.svg";
 import { Menu, Moon, Plus, Sun } from "lucide-react";
 import MenuModal from "../common/Modal";
 import Link from "next/link";
@@ -54,12 +54,12 @@ export default function Header() {
         <div className="flex flex-col gap-2  rounded-xs w-full relative  max-w-sm  items-center justify-center">
           <div className="flex justify-between w-full shadow-sm bg-[#fbfbfb] dark:bg-neutral-800 ">
             <Link href="/" className="flex gap-1 p-3 items-center  ">
-              {/* <Image
+              <Image
                 loading="eager"
                 src={Logo}
                 alt="logo"
                 className="w-7 md:w-6"
-              /> */}
+              />
             </Link>
             <div className="text-white p-2  flex gap-3 items-center ">
               <button className="bg-[#0033FF] md:block hidden rounded-full cursor-pointer text-sm px-6 p-2 font-mono">
