@@ -30,9 +30,9 @@ export default function MenuModal() {
       <div className={`${isOpen ? "opacity-100" : "opacity-0"} duration-500`}>
         {isOpen && (
           <div className="absolute gap-1 grid-rows-2 duration-500 text-black dark:text-white  w-full top-15 md:top-14 left-0">
-            <div className=" w-full bg-[#fbfbfb] dark:bg-neutral-800">
+            <div className=" w-full bg-[#fbfbfb] dark:bg-neutral-900">
               <div className="p-5  text-left flex flex-col gap-10 ">
-                <div className="flex flex-col gap-1 text-2xl">
+                <div className="flex flex-col font-semibold tracking-tighter gap-1 text-2xl">
                   <Link href="/about">
                     <TextAnimate animation="blurInUp">ABOUT</TextAnimate>
                   </Link>
