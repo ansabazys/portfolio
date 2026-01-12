@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     description: "Portfolio of a passionate software developer",
     type: "website",
   },
+  icons: {
+    icon: '/logo.svg'
+  }
 };
 
 export default function RootLayout({
