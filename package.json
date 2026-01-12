@@ -9,9 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "body-scroll-lock": "^4.0.0-beta.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.25.0",
+    "lenis": "^1.3.17",
     "lucide-react": "^0.562.0",
     "motion": "^12.25.0",
     "next": "16.1.1",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/body-scroll-lock": "^3.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

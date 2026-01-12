@@ -8,19 +8,32 @@ import {
   Plus,
   Sun,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TextAnimate } from "../ui/text-animate";
 import Link from "next/link";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
-
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export default function MenuModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (!ref.current) return;
 
+    if (isOpen) {
+      disableBodyScroll(ref.current);
+    } else {
+      enableBodyScroll(ref.current);
+    }
+
+    return () => {
+      if (ref.current) enableBodyScroll(ref.current);
+    };
+  }, [isOpen]);
 
   return (
-    <div>
+    <div ref={ref}>
       <Plus
         className={`${
           isOpen ? "rotate-45" : "rotate-0"
@@ -32,7 +45,7 @@ export default function MenuModal() {
           <div className="absolute gap-1 grid-rows-2 duration-500 text-black dark:text-white  w-full top-15 md:top-14 left-0">
             <div className=" w-full bg-[#fbfbfb] dark:bg-neutral-900">
               <div className="p-5  text-left flex flex-col gap-10 ">
-                <div className="flex flex-col font-semibold tracking-tighter gap-1 text-2xl">
+                <div className="flex flex-col font-semibold tracking-tight gap-1 text-2xl">
                   <Link href="/about">
                     <TextAnimate animation="blurInUp">ABOUT</TextAnimate>
                   </Link>
@@ -111,7 +124,6 @@ export default function MenuModal() {
                     <button>RESUME</button>
                   </div>
                   <div className="bg-[#0033FF] px-5 py-2 w-fit flex gap-2 items-center font-mono rounded-sm shadow-2xl">
-                    
                     <button>BOOK A CALL</button>
                   </div>
                 </div>
@@ -120,7 +132,7 @@ export default function MenuModal() {
                     THEME
                   </TextAnimate>
                   <div>
-                    <AnimatedThemeToggler  />
+                    <AnimatedThemeToggler />
                   </div>
                 </div>
               </div>

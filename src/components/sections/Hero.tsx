@@ -1,13 +1,14 @@
+import { ArrowDownToLine } from "lucide-react";
+
 export default function Hero() {
   return (
-    <section className="flex flex-col  gap-6 h-full justify-center items-center">
+    <section className="flex flex-col p-5 gap-6 h-screen justify-center items-center">
       <div>
-        <h1 className="text-3xl w-full max-w-lg font-light text-neutral-400">
+        <h1 className="md:text-3xl text-xl w-full max-w-lg font-light text-neutral-400">
           <span className="dark:text-white text-black font-sans">
             Hey, I'm Ansab.
           </span>{" "}
-          I build, create, and tell stories that make products matter. Based in
-          India,{" "}
+          Designer and developer building beautiful products that truly matter.{" "}
           <span className="underline dark:text-white text-black underline-offset-5 decoration-1 block md:inline">
             say hello
           </span>
@@ -70,8 +71,9 @@ export default function Hero() {
       </div>
 
       <div className=" w-full max-w-lg flex gap-3">
-        <button className="w-fit px-5 dark:bg-neutral-900 font-mono bg-neutral-100">
-          RESUME
+        <button className="w-fit px-5 dark:bg-neutral-900 font-mono flex items-center gap-2 bg-neutral-100">
+          <ArrowDownToLine className="w-5" />
+          <span> RESUME</span>
         </button>
         <button className="bg-blue-600 w-full font-mono p-3 text-white">
           START PROJECT
