@@ -52,7 +52,7 @@ export default function Header() {
       </div>
       <div className="flex justify-center w-full  items-center">
         <div className="flex flex-col gap-2  rounded-xs w-full relative  max-w-sm  items-center justify-center">
-          <div className="flex justify-between w-full shadow-sm bg-[#fbfbfb] dark:bg-neutral-800 ">
+          <div className="flex justify-between w-full shadow-sm bg-[#fbfbfb] dark:bg-neutral-900 ">
             <Link href="/" className="flex gap-1 p-3 items-center  ">
               <Image
                 loading="eager"
