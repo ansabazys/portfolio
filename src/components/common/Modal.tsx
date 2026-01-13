@@ -46,16 +46,19 @@ export default function MenuModal() {
             <div className=" w-full bg-[#fbfbfb] dark:bg-neutral-900">
               <div className="p-5  text-left flex flex-col gap-10 ">
                 <div className="flex flex-col  font-semibold tracking-tight gap-1 text-2xl">
-                  <Link href="/about">
+                  <Link
+                    href="/about"
+                    onClick={() => setIsOpen((prev) => !prev)}
+                  >
                     <TextAnimate animation="blurInUp">ABOUT</TextAnimate>
                   </Link>
-                  <Link href="/project">
+                  <Link href="/project"  onClick={() => setIsOpen((prev) => !prev)}>
                     <TextAnimate animation="blurInUp">PROJECTS</TextAnimate>
                   </Link>
-                  <Link href="/blog">
+                  <Link href="/blog"  onClick={() => setIsOpen((prev) => !prev)}>
                     <TextAnimate animation="blurInUp">BLOG</TextAnimate>
                   </Link>
-                  <Link href="/contact">
+                  <Link href="/contact"  onClick={() => setIsOpen((prev) => !prev)}>
                     <TextAnimate animation="blurInUp">CONTACT</TextAnimate>
                   </Link>
                 </div>
