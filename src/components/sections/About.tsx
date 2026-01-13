@@ -14,20 +14,20 @@ export default function About() {
     <section className="p-5 flex flex-col gap-5 w-full max-w-2xl h-screen ">
       <div>
         <h1 className="md:text-3xl text-xl  font-light  text-neutral-400">
-          I’m <span className="font-semibold text-white">Ansab</span>, a
-          software <span className="font-semibold text-white">developer</span>{" "}
-          in{" "}
+          I’m <span className=" dark:text-white text-black">Ansab</span>, a
+          software{" "}
+          <span className=" dark:text-white text-black">developer</span> in{" "}
           <span className="underline dark:text-white text-black underline-offset-5 decoration-1 ">
             India
           </span>{" "}
           who builds modern, user-friendly web applications and loves crafting
-          clean <span className="font-semibold text-white">designs</span>.
+          clean <span className="dark:text-white text-black">designs</span>.
         </h1>
       </div>
       <div className="grid gap-2">
         <h1 className="text-neutral-400 text-sm">WORK</h1>
         <div className="flex flex-col gap-3">
-          <div className="p-5 border-neutral-900 border bg-neutral-950 flex justify-between">
+          <div className="p-5 dark:border-neutral-900 border rounded-sm bg-neutral-100 dark:bg-neutral-950 flex justify-between">
             <div className="flex flex-col">
               <h1>Full stack Intern</h1>
               <p className="text-xs text-neutral-400">2025 - Present</p>
@@ -43,8 +43,6 @@ export default function About() {
           </div> */}
         </div>
       </div>
-
-      
     </section>
   );
 }
