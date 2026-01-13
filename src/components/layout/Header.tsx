@@ -18,7 +18,7 @@ export default function Header() {
   if (!mounted) return null;
 
   return (
-    <header className="p-5 z-10 fixed w-full lg:grid grid-cols-3 flex   dark:text-white">
+    <header className="p-5 z-20 fixed w-full lg:grid grid-cols-3 flex   dark:text-white">
       <div className="lg:flex justify-start items-center hidden ">
         <div className="flex w-full p-1 text-sm gap-5 font-light text-center font-mono">
           <Link
@@ -50,9 +50,9 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <div className="flex justify-center w-full  items-center">
+      <div className="flex justify-center w-full  items-center backdrop-blur-2xl">
         <div className="flex flex-col gap-2  rounded-xs w-full relative  max-w-sm  items-center justify-center">
-          <div className="flex justify-between w-full shadow-sm bg-[#fbfbfb] dark:bg-neutral-900 ">
+          <div className="flex justify-between w-full shadow-sm bg-[#fbfbfb] dark:bg-neutral-900">
             <Link href="/" className="flex gap-1 p-3 items-center  ">
               <Image
                 loading="eager"

@@ -75,7 +75,7 @@ export default function Hero() {
           <ArrowDownToLine className="w-5" />
           <span> RESUME</span>
         </button>
-        <button className="bg-blue-600 w-full font-mono p-3 text-white">
+        <button className="bg-[#0033FF] w-full font-mono p-3 text-white">
           START PROJECT
         </button>
       </div>

@@ -129,11 +129,6 @@
     mix-blend-mode: normal;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow: visible;      /* DO NOT use hidden */
-  -webkit-overflow-scrolling: auto; /* important for iOS */
-  margin: 0;
-  padding: 0;
+body {
+  font-family: "Geist"
 }

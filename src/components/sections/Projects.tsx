@@ -8,7 +8,7 @@ export default function Projects() {
             <h1 className="font-mono">ECOMMERCE</h1>
           </div>
           <div className="flex p-5 bg-neutral-900">
-            <p className="w-full">YEAR: 2026</p>
+            {/* <p className="w-full">YEAR: 2026</p> */}
 
             <div className="">
               <p>
@@ -30,7 +30,7 @@ export default function Projects() {
             <h1 className="font-mono">ECOMMERCE</h1>
           </div>
           <div className="flex p-5 bg-neutral-900">
-            <p className="w-full">YEAR: 2026</p>
+            {/* <p className="w-full">YEAR: 2026</p> */}
 
             <div className="">
               <p>
@@ -52,7 +52,7 @@ export default function Projects() {
             <h1 className="font-mono">ECOMMERCE</h1>
           </div>
           <div className="flex p-5 bg-neutral-900">
-            <p className="w-full">YEAR: 2026</p>
+            {/* <p className="w-full">YEAR: 2026</p> */}
 
             <div className="">
               <p>
