@@ -1,21 +1,25 @@
-import { ArrowDownToLine } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="flex flex-col p-5 gap-6 h-screen justify-center items-center">
       <div>
-        <h1 className="md:text-3xl text-xl w-full max-w-lg font-light text-neutral-400">
+        <h1 className="md:text-3xl md:text-center text-xl w-full max-w-lg font-light text-neutral-400">
           <span className="dark:text-white text-black font-sans">
             Hey, I'm Ansab.
           </span>{" "}
-          Designer and developer building beautiful products that truly matter.{" "}
-          <span className="underline dark:text-white text-black underline-offset-5 decoration-1 block md:inline">
+          I design and build clean, scalable web products with attention to
+          detail. {" "}
+          <a
+            href="https://ig.me/m/ansabazys"
+            className="underline dark:text-white text-black underline-offset-5 decoration-1 block md:inline"
+          >
             say hello
-          </span>
+          </a>
         </h1>
       </div>
 
-      <div className="flex gap-5 max-w-lg  justify-start w-full">
+      <div className="flex gap-5 max-w-lg  md:justify-center w-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -70,13 +74,13 @@ export default function Hero() {
         </svg>
       </div>
 
-      <div className=" w-full max-w-lg flex gap-3">
-        <button className="w-fit px-5 dark:bg-neutral-900 font-mono flex items-center gap-2 bg-neutral-100">
-          <ArrowDownToLine className="w-5" />
-          <span> RESUME</span>
+      <div className=" md:w-fit w-full max-w-sm flex gap-3">
+        <button className="bg-[#0033FF] w-fit font-mono flex justify-center md:justify-between md:px-5 gap-2 items-center p-3 text-white">
+          START A PROJECT
+          <ArrowUpRight />
         </button>
-        <button className="bg-[#0033FF] w-full font-mono p-3 text-white">
-          START PROJECT
+        <button className="px-5 w-fit justify-center dark:bg-neutral-900 font-mono flex items-center gap-2 bg-neutral-100">
+          <span>PROJECTS</span>
         </button>
       </div>
     </section>
