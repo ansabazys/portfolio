@@ -1,4 +1,4 @@
-import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
+
 
 export default function Hero() {
   return (
@@ -75,11 +75,10 @@ export default function Hero() {
       </div>
 
       <div className=" md:w-fit w-full max-w-sm flex gap-3">
-        <button className="bg-[#0033FF] w-fit font-mono flex justify-center md:justify-between md:px-5 gap-2 items-center p-3 text-white">
+        <button className="bg-[#0033FF] w-full md:w-fit font-mono flex justify-center md:justify-between md:px-5 gap-2 items-center p-3 text-white">
           START A PROJECT
-          <ArrowUpRight />
         </button>
-        <button className="px-5 w-fit justify-center dark:bg-neutral-900 font-mono flex items-center gap-2 bg-neutral-100">
+        <button className="px-5 md:w-fit justify-center dark:bg-neutral-900 font-mono flex items-center gap-2 bg-neutral-100">
           <span>PROJECTS</span>
         </button>
       </div>
