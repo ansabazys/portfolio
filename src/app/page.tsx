@@ -10,7 +10,7 @@ export default function Home() {
         {/* Profile Section */}
         <section className="flex gap-5 items-start">
           <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-neutral-200 dark:bg-[#161616] border border-neutral-300 dark:border-neutral-800 flex items-center justify-center transition-colors">
-            <Image src={Logo} alt="A" />
+            <Image src={Logo} width={23} alt="A" />
           </div>
           <p className="text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300 transition-colors">
             <span className="text-black dark:text-white font-medium">
@@ -85,13 +85,7 @@ export default function Home() {
           </h2>
           <div className="flex flex-col">
             {[
-              "Dot",
-              "Berlin Emergency Tracker",
-              "Radiocast",
-              "Time",
-              "Scoop",
-              "Mockmint",
-              "Peek AI",
+            "Healix"
             ].map((project) => (
               <Link
                 key={project}
