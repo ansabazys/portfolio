@@ -6,10 +6,10 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#FAFAFA] dark:bg-[#111111] text-neutral-600 dark:text-[#A1A1AA] flex justify-center px-4 sm:px-6 pt-32 pb-32 font-sans selection:bg-neutral-200 dark:selection:bg-neutral-800 transition-colors">
-      <div className="w-full max-w-[560px] flex flex-col gap-16">
+      <div className="w-full max-w-[560px] flex flex-col gap-8">
         {/* Profile Section */}
         <section className="flex gap-5 items-start">
-          <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-neutral-200 dark:bg-[#161616] border border-neutral-300 dark:border-neutral-800 flex items-center justify-center transition-colors">
+          <div className="w-12 h-12 rounded-full overflow-hidden shrink-0  dark:bg-[#161616] border border-neutral-300 dark:border-neutral-800 flex items-center justify-center transition-colors">
             <Image src={Logo} width={23} alt="A" />
           </div>
           <p className="text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300 transition-colors">
@@ -28,7 +28,7 @@ export default function Home() {
 
         {/* WORK Section */}
         <section className="flex flex-col gap-6">
-          <h2 className="text-[11px] font-mono tracking-[0.15em] text-neutral-500 uppercase">
+          <h2 className="text-[11px] font-mono tracking-[0.15em]  text-neutral-500 uppercase">
             Work
           </h2>
           <div className="flex flex-col gap-4">
