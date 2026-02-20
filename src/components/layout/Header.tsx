@@ -1,97 +1,51 @@
 "use client";
 
-import Image from "next/image";
-import Logo from "../../../public/logo.svg";
-import { Menu, Moon, Plus, Sun } from "lucide-react";
-import MenuModal from "../common/Modal";
 import Link from "next/link";
+import { Command } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 
 export default function Header() {
   const path = usePathname();
-
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => setMounted(true), []);
+
   if (!mounted) return null;
 
   return (
-    <header className="p-5 z-20 fixed w-full lg:grid grid-cols-3 flex   dark:text-white">
-      <div className="lg:flex justify-start items-center hidden ">
-        <div className="flex w-full p-1 text-sm gap-5 font-light text-center font-mono">
-          <Link
-            href="/projects"
-            className={`p-1 px-5 ${
-              path == "/projects" &&
-              "dark:bg-neutral-700 bg-neutral-200 shadow-sm duration-500 rounded-full"
-            } dark:bg-neutral-800 bg-neutral-200 rounded-lg`}
-          >
-            WORKS
-          </Link>
-          <Link
-            href="/about"
-            className={`p-1 px-5 ${
-              path == "/about" &&
-              "dark:bg-neutral-700 bg-neutral-200 shadow-sm duration-500 rounded-full"
-            } dark:bg-neutral-800 bg-neutral-200 rounded-lg`}
-          >
-            ABOUT
-          </Link>
-          <Link
-            href="/blog"
-            className={`p-1 px-5 ${
-              path == "/blog" &&
-              "dark:bg-neutral-700 bg-neutral-200 shadow-sm duration-500 rounded-full"
-            } dark:bg-neutral-800 bg-neutral-200 rounded-lg`}
-          >
-            BLOG
-          </Link>
-        </div>
-      </div>
-      <div className="flex justify-center w-full  items-center backdrop-blur-2xl">
-        <div className="flex flex-col gap-2  rounded-xs w-full relative  max-w-sm  items-center justify-center">
-          <div className="flex justify-between w-full shadow-sm bg-[#fbfbfb] dark:bg-neutral-900">
-            <Link href="/" className="flex gap-1 p-3 items-center  ">
-              <Image
-                loading="eager"
-                src={Logo}
-                alt="logo"
-                className="w-7 md:w-6"
-              />
-            </Link>
-            <div className="text-white p-2  flex gap-3 items-center ">
-              <button className="bg-[#0033FF] md:block hidden rounded-full cursor-pointer text-sm px-6 p-2 font-mono">
-                BOOK A CALL
-              </button>
-              <div className=" md:hidden block w-full">
-                <MenuModal />
-              </div>
-            </div>
-          </div>
-          <div className="md:flex hidden justify-between bg-[#fbfbfb] shadow-sm w-full dark:bg-neutral-800 rounded-xs"></div>
-        </div>
-      </div>
-      {/* <button onClick={toggleTheme}>
-        {theme === "dark" ? (
-          <Sun color="white" className="md:block hidden" />
-        ) : (
-          <Moon />
-        )}
-      </button> */}
-
-      <div className="lg:flex hidden gap-5 justify-end items-center font-mono">
+    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-4 py-2 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] shadow-md text-black dark:text-white font-sans text-sm transition-colors">
+      <div className="flex items-center gap-4">
         <Link
-          href="contact"
-          className={`p-1 px-5 ${
-            path == "/contact" &&
-            "dark:bg-neutral-700 bg-neutral-200 shadow-sm duration-500 rounded-full"
-          } dark:bg-neutral-800 bg-neutral-200 rounded-lg text-sm`}
+          href="/"
+          className={`font-medium transition-colors ${
+            path === "/"
+              ? "text-black dark:text-white"
+              : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+          }`}
         >
-          CONTACT
+          Home
         </Link>
+        <Link
+          href="/essays"
+          className="flex items-center gap-1.5 text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+        >
+          <span>Essays</span>
+          <span className="flex items-center justify-center bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full px-1.5 py-0.5 text-[10px] leading-none transition-colors">
+            4
+          </span>
+        </Link>
+      </div>
 
-        <AnimatedThemeToggler className="hidden md:block" />
+      <div className="w-px h-4 bg-neutral-200 dark:bg-neutral-800 transition-colors" />
+
+      <div className="flex items-center gap-3">
+        <button className="text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors flex items-center gap-1 text-xs">
+          <Command className="w-3.5 h-3.5" />
+          <span>K</span>
+        </button>
+        <AnimatedThemeToggler className="text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors [&_svg]:w-4 [&_svg]:h-4 [&_svg]:fill-current" />
       </div>
     </header>
   );
