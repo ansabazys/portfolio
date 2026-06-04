@@ -1,26 +1,233 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'ServerMono';
+  src: url('/fonts/ServerMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PerfectDOS';
+  src: url('/fonts/Perfect DOS VGA 437.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-grub: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-vt323: var(--font-vt323);
+  --font-ibm: var(--font-ibm);
+  --font-jetbrains: var(--font-jetbrains);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+  --grub-border: #ffffff;
+  --grub-text: #ffffff;
+  --grub-highlight-bg: #aaaaaa;
+  --grub-highlight-text: #000000;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-grub), monospace;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0;
+  image-rendering: pixelated;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  user-select: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.grub-screen {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  background: #000000;
+  font-family: var(--font-grub), monospace;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0;
+  padding-top: 2rem;
+}
+
+.grub-title {
+  height: 37px;
+  flex: 0 0 37px;
+  text-align: center;
+  color: #e8e8e8;
+  font-size: 14px;
+  line-height: 14px;
+  padding-top: 1px;
+}
+
+.grub-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  border: 2px solid #ffffff;
+  background: #000000;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.grub-panel-content {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 7px 9px;
+}
+
+.grub-menu-line {
+  height: 15px;
+  line-height: 15px;
+  padding: 0 4px;
+  white-space: pre;
+}
+
+.grub-selected {
+  background: #a8a8a8;
+  color: #000000;
+}
+
+.grub-footer {
+  flex: 0 0 99px;
+  color: #bdbdbd;
+  padding: 24px 0 0 36px;
+  line-height: 16px;
+}
+
+.grub-muted {
+  color: #bdbdbd;
+}
+
+.grub-dim {
+  color: #8f8f8f;
+}
+
+.grub-page-content {
+  padding: 7px 9px;
+  color: #ffffff;
+  line-height: 16px;
+}
+
+.grub-page-content h1,
+.grub-page-content h2,
+.grub-page-content h3,
+.grub-page-content p {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.grub-link {
+  text-decoration: none;
+  border-bottom: 1px solid #a8a8a8;
+}
+
+.grub-link:hover {
+  background: #a8a8a8;
+  color: #000000;
+  border-bottom-color: #a8a8a8;
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 12px;
+  }
+
+  .grub-screen {
+    font-size: 12px;
+  }
+
+  .grub-title {
+    flex-basis: 28px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .grub-footer {
+    flex-basis: 86px;
+    padding-left: 8px;
+    padding-top: 18px;
+    line-height: 14px;
+  }
+
+  .grub-menu-line {
+    height: 14px;
+    line-height: 14px;
+  }
+}
+
+
+
+/* Cursor Blink */
+.cursor-blink {
+  animation: cursor-blink-anim 1s step-end infinite;
+}
+
+@keyframes cursor-blink-anim {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Custom Scrollbar for Retro CLI look */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-left: 2px double #888888;
+}
+::-webkit-scrollbar-thumb {
+  background: #555555;
+  border: 2px solid #000000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
+
+/* ASCII Border Box helpers */
+.ascii-box {
+  border: 1px solid var(--grub-border);
+  background-color: #000000;
+}
+
+.ascii-border {
+  font-family: monospace;
 }
