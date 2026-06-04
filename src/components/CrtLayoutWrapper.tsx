@@ -30,7 +30,7 @@ export default function CrtLayoutWrapper({ children }: { children: React.ReactNo
   }, [toggleTerminal]);
 
   return (
-    <div className="w-full max-w-7xl h-full relative z-10">
+    <div className="w-full max-w-360 h-full relative z-10">
       {children}
     </div>
   );
