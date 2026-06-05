@@ -1,26 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'ServerMono';
-  src: url('/fonts/ServerMono-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PerfectDOS';
-  src: url('/fonts/Perfect DOS VGA 437.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --font-grub: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --font-vt323: var(--font-vt323);
-  --font-ibm: var(--font-ibm);
-  --font-jetbrains: var(--font-jetbrains);
 }
 
 :root {
@@ -242,13 +223,16 @@ a {
 
 .system-info-hero {
   display: grid;
-  grid-template-columns: minmax(150px, 230px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 28px;
 }
 
 .system-info-logo {
+  display: block;
+  max-width: 100%;
   margin: 0;
+  overflow: hidden;
   color: #22d3ee;
   font-family: var(--font-grub), monospace;
   font-size: 12px;
@@ -349,6 +333,6 @@ a {
   }
 
   .system-info-logo {
-    font-size: 10px;
+    font-size: 8px;
   }
 }

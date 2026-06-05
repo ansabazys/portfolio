@@ -26,7 +26,8 @@ export default function ProjectsPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
   const { data: projects, isLoading, error } = usePinnedProjects();
-  const activeProject: GithubProject | null = projects[selectedIndex] ?? null;
+  const activeIndex = projects.length > 0 ? Math.min(selectedIndex, projects.length - 1) : 0;
+  const activeProject: GithubProject | null = projects[activeIndex] ?? null;
 
   const loadingMessages = useMemo(() => [
     "Loading GitHub profile...",
@@ -37,19 +38,13 @@ export default function ProjectsPage() {
   ], []);
 
   useEffect(() => {
-    if (selectedIndex >= projects.length) {
-      setSelectedIndex(Math.max(projects.length - 1, 0));
-    }
-  }, [projects.length, selectedIndex]);
-
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (projects.length === 0 && e.key !== "Escape") return;
 
       switch (e.key) {
         case "ArrowUp":
           e.preventDefault();
-          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : projects.length - 1));
+          setSelectedIndex((prev) => (prev > 0 ? Math.min(prev - 1, projects.length - 1) : projects.length - 1));
           break;
         case "ArrowDown":
           e.preventDefault();
@@ -97,7 +92,7 @@ export default function ProjectsPage() {
               <p className="system-cyan">/home/ansab/projects</p>
               <div className="mt-[16px]">
                 {projects.map((project, idx) => {
-                  const isSelected = idx === selectedIndex;
+                  const isSelected = idx === activeIndex;
                   return (
                     <button
                       type="button"

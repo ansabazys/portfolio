@@ -13,7 +13,7 @@ export default function NotFound() {
 
   return (
     <main className="flex-1 h-full bg-black text-neutral-300 font-mono p-6 flex flex-col justify-between select-text">
-      <div className="space-y-4 text-xs md:text-sm leading-tight font-jetbrains">
+      <div className="space-y-4 text-xs md:text-sm leading-tight font-mono">
         <div className="text-red-500 font-bold text-lg border-b border-red-500 pb-2">
           *** KERNEL PANIC: PAGE_NOT_FOUND ***
         </div>

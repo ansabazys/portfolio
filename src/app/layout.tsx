@@ -1,25 +1,6 @@
 import type { Metadata } from "next";
-import { VT323, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import CrtLayoutWrapper from "@/components/CrtLayoutWrapper";
 import "./globals.css";
-
-const vt323 = VT323({
-  weight: "400",
-  variable: "--font-vt323",
-  subsets: ["latin"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  weight: ["400", "700"],
-  variable: "--font-ibm",
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  weight: ["400", "700"],
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Ansab Azys",
@@ -35,10 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${vt323.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col justify-center items-center font-mono bg-black text-white px-[21px] pt-[29px] pb-[20px]">
         <CrtLayoutWrapper>{children}</CrtLayoutWrapper>
       </body>
