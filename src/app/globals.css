@@ -291,14 +291,17 @@ a {
   text-align: left;
 }
 
+.system-project-selected {
+  background: #073b3f;
+  color: #72ff62;
+}
+
 .system-commit-native {
-  border-top: 1px solid #555555;
   padding-top: 16px;
 }
 
 .system-inline-terminal {
   margin-top: auto;
-  border-top: 1px solid #555555;
   padding-top: 16px;
   cursor: text;
   line-height: 16px;

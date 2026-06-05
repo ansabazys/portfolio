@@ -1,58 +1,59 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import GrubPageShell from "@/components/GrubPageShell";
+import { usePinnedProjects } from "@/hooks/usePinnedProjects";
+import type { GithubProject } from "@/types/github";
 
-interface Project {
-  name: string;
-  status: string;
-  stack: string[];
-  description: string;
+function toDirectoryName(projectName: string): string {
+  return `${projectName
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")}/`;
 }
 
-const PROJECTS_DATA: Project[] = [
-  {
-    name: "Traqory Analytics",
-    status: "Active Development",
-    stack: ["Next.js", "TypeScript", "NestJS", "PostgreSQL", "ClickHouse", "Docker"],
-    description: "Privacy-focused analytics platform built for modern web applications.",
-  },
-  {
-    name: "Event Tracking SDK",
-    status: "Production Ready",
-    stack: ["TypeScript", "Rollup", "Fetch API", "Jest"],
-    description: "High-performance event ingestion SDK for buffered interaction logs.",
-  },
-  {
-    name: "Analytics Dashboard",
-    status: "Maintained",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Vite"],
-    description: "Real-time workspace for clickstream events and aggregation charts.",
-  },
-  {
-    name: "Authentication Service",
-    status: "Completed",
-    stack: ["NestJS", "TypeScript", "Redis", "MongoDB", "OAuth2 / OIDC", "Docker"],
-    description: "Authorization service with secure codes, PKCE, and session caching.",
-  },
-];
+function formatDate(date: string): string {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  }).format(new Date(date));
+}
 
 export default function ProjectsPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
-  const activeProject = PROJECTS_DATA[selectedIndex];
+  const { data: projects, isLoading, error } = usePinnedProjects();
+  const activeProject: GithubProject | null = projects[selectedIndex] ?? null;
+
+  const loadingMessages = useMemo(() => [
+    "Loading GitHub profile...",
+    "Loading repositories...",
+    "Loading pinned projects...",
+    "Loading commit history...",
+    "Done.",
+  ], []);
+
+  useEffect(() => {
+    if (selectedIndex >= projects.length) {
+      setSelectedIndex(Math.max(projects.length - 1, 0));
+    }
+  }, [projects.length, selectedIndex]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (projects.length === 0 && e.key !== "Escape") return;
+
       switch (e.key) {
         case "ArrowUp":
           e.preventDefault();
-          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : PROJECTS_DATA.length - 1));
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : projects.length - 1));
           break;
         case "ArrowDown":
           e.preventDefault();
-          setSelectedIndex((prev) => (prev < PROJECTS_DATA.length - 1 ? prev + 1 : 0));
+          setSelectedIndex((prev) => (prev < projects.length - 1 ? prev + 1 : 0));
           break;
         case "Escape":
           e.preventDefault();
@@ -65,33 +66,84 @@ export default function ProjectsPage() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [router]);
+  }, [projects.length, router]);
 
   return (
-    <GrubPageShell title="PROJECTS" footerLeft="Use the ↑ and ↓ keys to inspect portfolio entries." footerRight="Module: ACTIVE.">
-      <div className="grid grid-cols-1 gap-[32px] md:grid-cols-[42ch_1fr]">
-        <div>
-          {PROJECTS_DATA.map((project, idx) => {
-            const isSelected = idx === selectedIndex;
-            return (
-              <div
-                key={project.name}
-                className={`grub-menu-line cursor-pointer ${isSelected ? "grub-selected" : "text-white"}`}
-                onMouseEnter={() => setSelectedIndex(idx)}
-              >
-                {isSelected ? `*${project.name}` : ` ${project.name}`}
-              </div>
-            );
-          })}
-        </div>
+    <GrubPageShell title="PROJECTS" footerLeft="Use the Up and Down keys to inspect pinned repositories." footerRight="Module: ACTIVE.">
+      <div className="leading-[16px]">
+        <p>
+          <span className="system-green">ansab@portfolio:~$</span> cd /home/ansab/projects
+        </p>
 
-        <div className="leading-[16px]">
-          <p>Name: {activeProject.name}</p>
-          <p>Status: {activeProject.status}</p>
-          <p>Stack: {activeProject.stack.join(", ")}</p>
-          <p className="mt-[16px]">Description:</p>
-          <p className="max-w-[72ch] pl-[16px]">{activeProject.description}</p>
-        </div>
+        {isLoading && (
+          <div className="mt-[16px] grub-muted">
+            {loadingMessages.map((message) => (
+              <p key={message}>{message}</p>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && error && (
+          <p className="mt-[16px] system-yellow">GitHub service unavailable.</p>
+        )}
+
+        {!isLoading && !error && projects.length === 0 && (
+          <p className="mt-[16px] grub-muted">No pinned repositories found.</p>
+        )}
+
+        {!isLoading && !error && projects.length > 0 && activeProject && (
+          <div className="mt-[16px] grid grid-cols-1 gap-[32px] md:grid-cols-[42ch_1fr]">
+            <div>
+              <p className="system-cyan">/home/ansab/projects</p>
+              <div className="mt-[16px]">
+                {projects.map((project, idx) => {
+                  const isSelected = idx === selectedIndex;
+                  return (
+                    <button
+                      type="button"
+                      key={project.githubUrl}
+                      className={`grub-menu-line system-link-line cursor-pointer ${isSelected ? "system-project-selected" : "text-white"}`}
+                      onMouseEnter={() => setSelectedIndex(idx)}
+                    >
+                      {isSelected ? "*" : " "} {toDirectoryName(project.name)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <p>
+                <span className="system-green">ansab@portfolio</span>:{toDirectoryName(activeProject.name)}$ cat project-info
+              </p>
+              <div className="mt-[16px]">
+                <p><span className="system-cyan">Project Name :</span> {activeProject.name}</p>
+                <p><span className="system-cyan">Description  :</span> {activeProject.description ?? "No description provided."}</p>
+                <p><span className="system-cyan">Language     :</span> {activeProject.language?.name ?? "Unknown"}</p>
+                <p><span className="system-cyan">Stars        :</span> {activeProject.stars}</p>
+                <p><span className="system-cyan">Forks        :</span> {activeProject.forks}</p>
+                <p><span className="system-cyan">Topics       :</span> {activeProject.topics.length > 0 ? activeProject.topics.join(", ") : "None"}</p>
+                <p><span className="system-cyan">Last Updated :</span> {formatDate(activeProject.updatedAt)}</p>
+                <p>
+                  <span className="system-cyan">GitHub URL   :</span>{" "}
+                  <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className="grub-link">
+                    {activeProject.githubUrl}
+                  </a>
+                </p>
+                <p>
+                  <span className="system-cyan">Live URL     :</span>{" "}
+                  {activeProject.homepageUrl ? (
+                    <a href={activeProject.homepageUrl} target="_blank" rel="noopener noreferrer" className="grub-link">
+                      {activeProject.homepageUrl}
+                    </a>
+                  ) : (
+                    "Not configured"
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </GrubPageShell>
   );

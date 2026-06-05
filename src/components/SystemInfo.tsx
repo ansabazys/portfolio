@@ -4,6 +4,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useRouter } from "next/navigation";
 import Cursor from "./Cursor";
 import GrubPageShell from "./GrubPageShell";
+import { useGithubStats } from "@/hooks/useGithubStats";
+import { useLatestCommit } from "@/hooks/useLatestCommit";
+import { usePinnedProjects } from "@/hooks/usePinnedProjects";
 
 interface MenuItem {
   key: string;
@@ -57,15 +60,13 @@ const TECH_STACK = [
   ["Product", "Analytics, Dashboards, UX Systems", "85%"],
 ];
 
-const GITHUB_STATS = [
-  ["Username", "ansabazys"],
-  ["Repositories", "24"],
-  ["Total Stars", "48"],
-  ["Total Commits", "1,247"],
-  ["Pull Requests", "89"],
-  ["Contributions", "1,463"],
-  ["Current Streak", "34 days"],
-];
+function formatDate(date: string): string {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  }).format(new Date(date));
+}
 
 export default function SystemInfo() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -76,6 +77,9 @@ export default function SystemInfo() {
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const { data: githubStats, isLoading: isStatsLoading, error: statsError } = useGithubStats();
+  const { data: pinnedProjects, isLoading: isPinnedLoading, error: pinnedError } = usePinnedProjects();
+  const { data: latestCommit, isLoading: isCommitLoading, error: commitError } = useLatestCommit();
 
   const commandMap = useMemo(() => {
     const map = new Map<string, MenuItem>();
@@ -237,7 +241,7 @@ export default function SystemInfo() {
                   <button
                     type="button"
                     key={item.key}
-                    className={`grub-menu-line system-link-line cursor-pointer ${selected ? "grub-selected" : "text-white"}`}
+                    className={`grub-menu-line system-link-line cursor-pointer ${selected ? "system-project-selected" : "text-white"}`}
                     onMouseEnter={() => setSelectedIndex(index)}
                     onClick={() => navigateToItem(item)}
                   >
@@ -250,23 +254,67 @@ export default function SystemInfo() {
 
           <section className="leading-[16px]">
             <p className="system-section-title">GITHUB STATS</p>
-            <div className="mt-[16px]">
-              {GITHUB_STATS.map(([label, value], index) => (
-                <p key={label}>
-                  <span className={index % 3 === 0 ? "system-magenta" : index % 3 === 1 ? "system-green" : "system-yellow"}>
-                    {label.padEnd(15, " ")}:
-                  </span>{" "}
-                  {value}
-                </p>
-              ))}
+            {isStatsLoading && (
+              <div className="mt-[16px] grub-muted">
+                <p>Loading GitHub profile...</p>
+                <p>Loading repositories...</p>
+                <p>Loading pinned projects...</p>
+                <p>Loading commit history...</p>
+                <p>Done.</p>
+              </div>
+            )}
+
+            {!isStatsLoading && statsError && (
+              <p className="mt-[16px] system-yellow">GitHub service unavailable.</p>
+            )}
+
+            {!isStatsLoading && !statsError && githubStats && (
+              <div className="mt-[16px]">
+                <p><span className="system-magenta">Username     :</span> {githubStats.username}</p>
+                <p><span className="system-green">Repositories :</span> {githubStats.repositories}</p>
+                <p><span className="system-yellow">Followers    :</span> {githubStats.followers}</p>
+                <p><span className="system-cyan">Following    :</span> {githubStats.following}</p>
+                <p><span className="system-magenta">Stars        :</span> {githubStats.totalStars}</p>
+                <p><span className="system-green">Forks        :</span> {githubStats.totalForks}</p>
+                <p><span className="system-yellow">Contributions:</span> {githubStats.contributionCount ?? "Unavailable"}</p>
+              </div>
+            )}
+
+            <div className="mt-[24px] system-commit-native">
+              <p className="system-section-title">LATEST REPOSITORY</p>
+              {isStatsLoading && <p className="mt-[16px] grub-muted">Loading repositories...</p>}
+              {!isStatsLoading && statsError && <p className="mt-[16px] system-yellow">GitHub service unavailable.</p>}
+              {!isStatsLoading && !statsError && githubStats?.latestRepositoryUpdated && (
+                <div className="mt-[16px]">
+                  <p className="system-green">{githubStats.latestRepositoryUpdated.name}</p>
+                  <p className="grub-muted">{githubStats.latestRepositoryUpdated.description ?? "No description provided."}</p>
+                  <p>{formatDate(githubStats.latestRepositoryUpdated.updatedAt)}</p>
+                </div>
+              )}
             </div>
 
             <div className="mt-[24px] system-commit-native">
               <p className="system-section-title">LATEST COMMIT</p>
-              <p className="mt-[16px] system-green">feat: add analytics dashboard</p>
-              <p>2 hours ago</p>
-              <p className="grub-muted">on main branch</p>
-              <p className="system-cyan">1ebab74</p>
+              {isCommitLoading && <p className="mt-[16px] grub-muted">Loading commit history...</p>}
+              {!isCommitLoading && commitError && <p className="mt-[16px] system-yellow">GitHub service unavailable.</p>}
+              {!isCommitLoading && !commitError && latestCommit && (
+                <div className="mt-[16px]">
+                  <p className="system-green">{latestCommit.message}</p>
+                  <p>{latestCommit.repositoryName}</p>
+                  <p className="grub-muted">{formatDate(latestCommit.committedDate)}</p>
+                  <p className="system-cyan">{latestCommit.oid.slice(0, 7)}</p>
+                </div>
+              )}
+              {!isCommitLoading && !commitError && !latestCommit && (
+                <p className="mt-[16px] grub-muted">No commit history found.</p>
+              )}
+            </div>
+
+            <div className="mt-[24px] system-commit-native">
+              <p className="system-section-title">PINNED PROJECTS COUNT</p>
+              {isPinnedLoading && <p className="mt-[16px] grub-muted">Loading pinned projects...</p>}
+              {!isPinnedLoading && pinnedError && <p className="mt-[16px] system-yellow">GitHub service unavailable.</p>}
+              {!isPinnedLoading && !pinnedError && <p className="mt-[16px] system-green">{pinnedProjects.length}</p>}
             </div>
           </section>
         </div>

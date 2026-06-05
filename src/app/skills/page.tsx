@@ -6,16 +6,16 @@ import GrubPageShell from "@/components/GrubPageShell";
 import Typewriter from "@/components/Typewriter";
 
 const SKILLS_LIST = [
-  "TypeScript",
-  "Next.js",
-  "React",
-  "NestJS",
-  "PostgreSQL",
-  "MongoDB",
-  "ClickHouse",
-  "Docker",
-  "Kubernetes",
-  "AWS",
+  { name: "TypeScript", group: "language" },
+  { name: "Next.js", group: "framework" },
+  { name: "React", group: "frontend" },
+  { name: "NestJS", group: "backend" },
+  { name: "PostgreSQL", group: "database" },
+  { name: "MongoDB", group: "database" },
+  { name: "ClickHouse", group: "analytics" },
+  { name: "Docker", group: "devops" },
+  { name: "Kubernetes", group: "devops" },
+  { name: "AWS", group: "cloud" },
 ];
 
 export default function SkillsPage() {
@@ -54,15 +54,23 @@ export default function SkillsPage() {
     <GrubPageShell title="PACKAGE MANAGER" footerRight="Aptitude: IDLE.">
       <div className="leading-[16px]">
         <p>
-          ansab@portfolio:~$ <Typewriter text="apt list --installed" speed={40} delay={300} onComplete={() => setCommandFinished(true)} />
+          <span className="system-green">ansab@portfolio:~$</span>{" "}
+          <Typewriter text="apt list --installed" speed={40} delay={300} onComplete={() => setCommandFinished(true)} />
         </p>
 
         {commandFinished && (
           <div className="mt-[16px]">
-            <p className="grub-muted">Listing... Done</p>
+            <p>
+              <span className="grub-muted">Listing...</span> <span className="system-green">Done</span>
+            </p>
             <div className="mt-[16px] grid grid-cols-1 gap-x-[32px] sm:grid-cols-2 md:grid-cols-3">
               {visibleSkills.map((skill) => (
-                <p key={skill}> {skill}/stable,now [installed]</p>
+                <p key={skill.name}>
+                  <span className="system-cyan">{skill.name}</span>
+                  <span className="grub-muted">/stable,now</span>{" "}
+                  <span className="system-yellow">[{skill.group}]</span>{" "}
+                  <span className="system-green">[installed]</span>
+                </p>
               ))}
             </div>
           </div>
