@@ -5,9 +5,6 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ansab Azys",
   description: "Boot into AnsabOS - Ansab's developer portfolio, styled as a retro Linux GRUB bootloader screen with interactive command terminals and retro system logs.",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({
