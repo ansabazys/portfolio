@@ -208,16 +208,16 @@ a {
 
 /* Custom Scrollbar for Retro CLI look */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #000000;
-  border-left: 2px double #888888;
+  border-left: 1px solid #555555;
 }
 ::-webkit-scrollbar-thumb {
   background: #555555;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #888888;
@@ -231,4 +231,121 @@ a {
 
 .ascii-border {
   font-family: monospace;
+}
+
+.system-info-native {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.system-info-hero {
+  display: grid;
+  grid-template-columns: minmax(150px, 230px) minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+
+.system-info-logo {
+  margin: 0;
+  color: #22d3ee;
+  font-family: var(--font-grub), monospace;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: pre;
+}
+
+.system-info-native-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px 48px;
+}
+
+.system-section-title {
+  color: #22d3ee;
+}
+
+.system-green {
+  color: #72ff62;
+}
+
+.system-cyan {
+  color: #22d3ee;
+}
+
+.system-yellow {
+  color: #f6ef5b;
+}
+
+.system-magenta {
+  color: #d879ff;
+}
+
+.system-link-line {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.system-commit-native {
+  border-top: 1px solid #555555;
+  padding-top: 16px;
+}
+
+.system-inline-terminal {
+  margin-top: auto;
+  border-top: 1px solid #555555;
+  padding-top: 16px;
+  cursor: text;
+  line-height: 16px;
+}
+
+.system-command-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.system-command-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.system-command-input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #ffffff;
+  caret-color: transparent;
+}
+
+.system-command-cursor {
+  position: absolute;
+  top: 0;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .system-info-hero,
+  .system-info-native-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .system-info-native {
+    gap: 18px;
+  }
+
+  .system-info-logo {
+    font-size: 10px;
+  }
 }

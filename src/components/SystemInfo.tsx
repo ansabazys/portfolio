@@ -1,56 +1,314 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Cursor from "./Cursor";
 import GrubPageShell from "./GrubPageShell";
-import Typewriter from "./Typewriter";
+
+interface MenuItem {
+  key: string;
+  label: string;
+  route: string;
+}
+
+interface TerminalLine {
+  command: string;
+  output: string;
+}
+
+const MENU_ITEMS: MenuItem[] = [
+  { key: "1", label: "About Me", route: "/grub/system-info" },
+  { key: "2", label: "Projects", route: "/projects" },
+  { key: "3", label: "Skills", route: "/skills" },
+  { key: "4", label: "Experience", route: "/experience" },
+  { key: "5", label: "GitHub Stats", route: "/grub/system-info" },
+  { key: "6", label: "Contact", route: "/contact" },
+  { key: "7", label: "Resume", route: "/resume" },
+  { key: "8", label: "Terminal", route: "/terminal" },
+  { key: "9", label: "Analytics Dashboard", route: "/projects" },
+  { key: "0", label: "Exit AnsabOS", route: "/grub" },
+];
+
+const ASCII_LOGO = String.raw`
+ █████╗ ███╗   ██╗███████╗ █████╗ ██████╗
+██╔══██╗████╗  ██║██╔════╝██╔══██╗██╔══██╗
+███████║██╔██╗ ██║███████╗███████║██████╔╝
+██╔══██║██║╚██╗██║╚════██║██╔══██║██╔══██╗
+██║  ██║██║ ╚████║███████║██║  ██║██████╔╝
+╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═════╝
+`;
+
+const INFO_ROWS = [
+  ["User", "Ansab"],
+  ["Role", "Full Stack Developer"],
+  ["Focus", "Building Traqory Analytics"],
+  ["OS", "AnsabOS 1.0"],
+  ["Shell", "zsh 5.9"],
+  ["Editor", "nvim"],
+  ["Location", "Kerala, India"],
+  ["Status", "Available for opportunities"],
+];
+
+const TECH_STACK = [
+  ["Frontend", "React, Next.js, TypeScript", "90%"],
+  ["Backend", "NestJS, Node.js, APIs", "92%"],
+  ["Database", "PostgreSQL, ClickHouse, MongoDB", "80%"],
+  ["DevOps", "Docker, Linux, CI/CD", "70%"],
+  ["Product", "Analytics, Dashboards, UX Systems", "85%"],
+];
+
+const GITHUB_STATS = [
+  ["Username", "ansabazys"],
+  ["Repositories", "24"],
+  ["Total Stars", "48"],
+  ["Total Commits", "1,247"],
+  ["Pull Requests", "89"],
+  ["Contributions", "1,463"],
+  ["Current Streak", "34 days"],
+];
 
 export default function SystemInfo() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [terminalOpen, setTerminalOpen] = useState(true);
+  const [command, setCommand] = useState("");
+  const [terminalLines, setTerminalLines] = useState<TerminalLine[]>([
+    { command: "system-info", output: "profile modules mounted: info, stack, menu, github, commits" },
+  ]);
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  const commandMap = useMemo(() => {
+    const map = new Map<string, MenuItem>();
+
+    MENU_ITEMS.forEach((item) => {
+      map.set(item.key, item);
+      map.set(item.label.toLowerCase(), item);
+      map.set(item.label.toLowerCase().replace(/\s+/g, "-"), item);
+    });
+
+    map.set("about", MENU_ITEMS[0]);
+    map.set("github", MENU_ITEMS[4]);
+    map.set("git", MENU_ITEMS[4]);
+    map.set("stats", MENU_ITEMS[4]);
+    map.set("analytics", MENU_ITEMS[8]);
+    map.set("dashboard", MENU_ITEMS[8]);
+    map.set("exit", MENU_ITEMS[9]);
+
+    return map;
+  }, []);
+
+  const navigateToItem = useCallback((item: MenuItem) => {
+    router.push(item.route);
+  }, [router]);
+
+  const runCommand = useCallback((rawCommand: string) => {
+    const clean = rawCommand.trim().toLowerCase();
+    if (!clean) return;
+
+    if (clean === "clear") {
+      setTerminalLines([]);
+      return;
+    }
+
+    if (clean === "help" || clean === "menu") {
+      setTerminalLines((prev) => [
+        ...prev.slice(-3),
+        {
+          command: rawCommand,
+          output: "try: 1-9, 0, about, projects, skills, experience, contact, resume, terminal, github, clear",
+        },
+      ]);
+      return;
+    }
+
+    const item = commandMap.get(clean);
+    if (item) {
+      setTerminalLines((prev) => [
+        ...prev.slice(-3),
+        { command: rawCommand, output: `loading ${item.label.toLowerCase()}...` },
+      ]);
+      window.setTimeout(() => navigateToItem(item), 180);
+      return;
+    }
+
+    setTerminalLines((prev) => [
+      ...prev.slice(-3),
+      { command: rawCommand, output: `command not found: ${rawCommand}. Type help.` },
+    ]);
+  }, [commandMap, navigateToItem]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        router.push("/grub");
+      if (document.activeElement === inputRef.current) {
+        if (e.key === "Escape") {
+          inputRef.current?.blur();
+        }
+        return;
+      }
+
+      switch (e.key) {
+        case "Escape":
+          e.preventDefault();
+          router.push("/grub");
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : MENU_ITEMS.length - 1));
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev < MENU_ITEMS.length - 1 ? prev + 1 : 0));
+          break;
+        case "Enter":
+          e.preventDefault();
+          navigateToItem(MENU_ITEMS[selectedIndex]);
+          break;
+        case "c":
+        case "C":
+          e.preventDefault();
+          setTerminalOpen(true);
+          window.setTimeout(() => inputRef.current?.focus(), 0);
+          break;
+        case "F2":
+          e.preventDefault();
+          setTerminalOpen((prev) => !prev);
+          break;
+        default:
+          if (/^\d$/.test(e.key)) {
+            const index = MENU_ITEMS.findIndex((item) => item.key === e.key);
+            if (index >= 0) {
+              e.preventDefault();
+              setSelectedIndex(index);
+              navigateToItem(MENU_ITEMS[index]);
+            }
+          }
+          break;
       }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [router]);
+  }, [navigateToItem, router, selectedIndex]);
 
   return (
-    <GrubPageShell title="ANSABOS PORTFOLIO INFORMATION" footerRight="Status: ACTIVE.">
-      <div className="space-y-[16px]">
-        <p>
-          User: <Typewriter text="Ansab" speed={40} delay={100} showCursor={false} />
-        </p>
-        <p>
-          Role: <Typewriter text="Full Stack Developer" speed={40} delay={300} showCursor={false} />
-        </p>
-        <div>
-          <p>Current Focus:</p>
-          <p className="pl-[16px]">
-            <Typewriter text="Building Traqory Analytics" speed={45} delay={800} showCursor={false} />
-          </p>
+    <GrubPageShell
+      title="ANSABOS SYSTEM INFO"
+      footerLeft="Use the Up and Down keys to inspect menu links."
+      footerRight="Status: ACTIVE."
+    >
+      <div className="system-info-native">
+        <section className="system-info-hero" aria-label="profile summary">
+          <pre className="system-info-logo" aria-label="AnsabOS ASCII logo">{ASCII_LOGO}</pre>
+        </section>
+
+        <div className="system-info-native-grid">
+          <section className="leading-[16px]">
+            <p className="system-section-title">INFO</p>
+            <div className="mt-[16px]">
+              {INFO_ROWS.map(([label, value]) => (
+                <p key={label}>
+                  <span className="system-cyan">{label.padEnd(9, " ")}:</span> {value}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="leading-[16px]">
+            <p className="system-section-title">TECH STACK</p>
+            <div className="mt-[16px]">
+              {TECH_STACK.map(([label, detail, percent], index) => (
+                <p key={label}>
+                  <span className={index % 2 === 0 ? "system-green" : "system-yellow"}>
+                    {label.padEnd(9, " ")}
+                  </span>
+                  <span className="grub-muted"> [{percent}] </span>
+                  {detail}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          <section className="leading-[16px]">
+            <p className="system-section-title">MENU LINKS</p>
+            <div className="mt-[16px]">
+              {MENU_ITEMS.map((item, index) => {
+                const selected = index === selectedIndex;
+                return (
+                  <button
+                    type="button"
+                    key={item.key}
+                    className={`grub-menu-line system-link-line cursor-pointer ${selected ? "grub-selected" : "text-white"}`}
+                    onMouseEnter={() => setSelectedIndex(index)}
+                    onClick={() => navigateToItem(item)}
+                  >
+                    {selected ? ">" : " "} [{item.key}] {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="leading-[16px]">
+            <p className="system-section-title">GITHUB STATS</p>
+            <div className="mt-[16px]">
+              {GITHUB_STATS.map(([label, value], index) => (
+                <p key={label}>
+                  <span className={index % 3 === 0 ? "system-magenta" : index % 3 === 1 ? "system-green" : "system-yellow"}>
+                    {label.padEnd(15, " ")}:
+                  </span>{" "}
+                  {value}
+                </p>
+              ))}
+            </div>
+
+            <div className="mt-[24px] system-commit-native">
+              <p className="system-section-title">LATEST COMMIT</p>
+              <p className="mt-[16px] system-green">feat: add analytics dashboard</p>
+              <p>2 hours ago</p>
+              <p className="grub-muted">on main branch</p>
+              <p className="system-cyan">1ebab74</p>
+            </div>
+          </section>
         </div>
-        <div>
-          <p>Specialization:</p>
-          <p className="pl-[16px]">
-            <Typewriter text="- Analytics Platforms" speed={30} delay={1500} showCursor={false} />
-          </p>
-          <p className="pl-[16px]">
-            <Typewriter text="- Full Stack Development" speed={30} delay={1800} showCursor={false} />
-          </p>
-          <p className="pl-[16px]">
-            <Typewriter text="- Backend Architecture" speed={30} delay={2100} showCursor={false} />
-          </p>
-          <p className="pl-[16px]">
-            <Typewriter text="- Scalable Systems" speed={30} delay={2400} showCursor={false} />
-          </p>
-        </div>
-        <p>
-          Status: <Typewriter text="Available for opportunities" speed={40} delay={2800} showCursor />
-        </p>
+
+        {terminalOpen && (
+          <form
+            className="system-inline-terminal"
+            onSubmit={(e) => {
+              e.preventDefault();
+              runCommand(command);
+              setCommand("");
+            }}
+            onClick={() => inputRef.current?.focus()}
+          >
+            <div>
+              {terminalLines.slice(-4).map((line, index) => (
+                <p key={`${line.command}-${index}`}>
+                  <span className="system-green">ansab@portfolio:~$</span> {line.command}
+                  <span className="grub-muted"> {line.output}</span>
+                </p>
+              ))}
+            </div>
+            <label className="system-command-row">
+              <span className="system-green">ansab@portfolio:~$</span>
+              <span className="system-command-wrap">
+                <input
+                  ref={inputRef}
+                  value={command}
+                  onChange={(e) => setCommand(e.target.value)}
+                  className="system-command-input"
+                  autoComplete="off"
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck="false"
+                />
+                <span className="system-command-cursor" style={{ left: `${command.length}ch` }}>
+                  <Cursor char="|" />
+                </span>
+              </span>
+            </label>
+          </form>
+        )}
       </div>
     </GrubPageShell>
   );
