@@ -213,7 +213,7 @@ a {
 }
 ::-webkit-scrollbar-track {
   background: #000000;
-  border-left: 1px solid #555555;
+
 }
 ::-webkit-scrollbar-thumb {
   background: #555555;
