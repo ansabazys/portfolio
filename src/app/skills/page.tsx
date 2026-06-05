@@ -217,7 +217,7 @@ export default function SkillsPage() {
 
           <div className="mt-[16px] grid grid-cols-1 gap-[32px] md:grid-cols-[42ch_1fr]">
             <div>
-              <p className="system-cyan">/home/ansab/skills</p>
+              <div className="h-[16px]" aria-hidden="true" />
               <div className="mt-[16px]">
                 {SKILL_PACKAGES.map((skill, idx) => {
                   const isSelected = idx === selectedIndex;

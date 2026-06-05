@@ -67,7 +67,7 @@ export default function ProjectsPage() {
     <GrubPageShell title="PROJECTS" footerLeft="Use the Up and Down keys to inspect pinned repositories." footerRight="Module: ACTIVE.">
       <div className="leading-[16px]">
         <p>
-          <span className="system-green">ansab@portfolio:~$</span> cd /home/ansab/projects
+          <span className="system-green">ansab@portfolio:~$</span> ls projects
         </p>
 
         {isLoading && (
@@ -89,7 +89,7 @@ export default function ProjectsPage() {
         {!isLoading && !error && projects.length > 0 && activeProject && (
           <div className="mt-[16px] grid grid-cols-1 gap-[32px] md:grid-cols-[42ch_1fr]">
             <div>
-              <p className="system-cyan">/home/ansab/projects</p>
+              <div className="h-[16px]" aria-hidden="true" />
               <div className="mt-[16px]">
                 {projects.map((project, idx) => {
                   const isSelected = idx === activeIndex;
