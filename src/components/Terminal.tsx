@@ -299,7 +299,7 @@ export default function Terminal() {
           <input
             ref={inputRef}
             type="text"
-            className="w-full border-none bg-transparent text-white caret-transparent outline-none select-text"
+            className="terminal-command-input w-full border-none bg-transparent text-white caret-transparent outline-none select-text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}

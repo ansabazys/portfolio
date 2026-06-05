@@ -313,6 +313,10 @@ a {
   caret-color: transparent;
 }
 
+.terminal-command-input {
+  font-size: inherit;
+}
+
 .system-command-cursor {
   position: absolute;
   top: 0;
@@ -334,5 +338,12 @@ a {
 
   .system-info-logo {
     font-size: 8px;
+  }
+
+  .system-command-row,
+  .system-command-input,
+  .terminal-command-input {
+    font-size: 16px;
+    line-height: 16px;
   }
 }
