@@ -69,23 +69,45 @@ export default function ExperiencePage() {
     return () => clearInterval(interval);
   }, [commandFinished]);
 
+  const getLevelClassName = (level: LogEntry["level"]) => {
+    switch (level) {
+      case "SUCCESS":
+        return "system-green";
+      case "WARN":
+        return "system-yellow";
+      case "INFO":
+      default:
+        return "system-cyan";
+    }
+  };
+
   return (
     <GrubPageShell title="SYSTEM LOGS" footerRight="Systemd: ACTIVE.">
       <div className="leading-[16px]">
         <p>
-          ansab@portfolio:~$ <Typewriter text="journalctl -u experience.service --no-pager" speed={40} delay={300} onComplete={() => setCommandFinished(true)} />
+          <span className="system-green">ansab@portfolio:~$</span>{" "}
+          <Typewriter text="journalctl -u experience.service --no-pager" speed={40} delay={300} onComplete={() => setCommandFinished(true)} />
         </p>
 
         {commandFinished && (
           <div className="mt-[16px]">
-            <p className="grub-muted">-- Logs begin at 2024-06-01 08:00:00 UTC. --</p>
+            <p>
+              <span className="grub-muted">-- Logs begin at</span>{" "}
+              <span className="system-yellow">2024-06-01 08:00:00 UTC</span>
+              <span className="grub-muted">. --</span>
+            </p>
             <div className="mt-[16px]">
               {displayedLogs.map((log) => (
                 <div key={`${log.timestamp}-${log.message}`} className="mb-[16px]">
                   <p>
-                    [{log.timestamp.slice(0, 10)}] {log.service}: [{log.level}] {log.message}
+                    <span className="system-magenta">[{log.timestamp.slice(0, 10)}]</span>{" "}
+                    <span className="system-cyan">{log.service}</span>:{" "}
+                    <span className={getLevelClassName(log.level)}>[{log.level}]</span>{" "}
+                    <span>{log.message}</span>
                   </p>
-                  <p className="pl-[16px] grub-muted">`- {log.details}</p>
+                  <p className="pl-[16px] grub-muted">
+                    `- <span className="system-yellow">{log.details}</span>
+                  </p>
                 </div>
               ))}
             </div>

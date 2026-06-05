@@ -23,19 +23,26 @@ export default function ContactPage() {
     <GrubPageShell title="CONTACT SERVICE" footerRight="Service: CONNECTED.">
       <div className="leading-[16px]">
         <p>
-          ansab@portfolio:~$ <Typewriter text="contact" speed={40} delay={300} onComplete={() => setCommandFinished(true)} />
+          <span className="system-green">ansab@portfolio:~$</span>{" "}
+          <Typewriter text="contact" speed={40} delay={300} onComplete={() => setCommandFinished(true)} />
         </p>
 
         {commandFinished && (
           <div className="mt-[32px] space-y-[16px]">
             <p>
-              Email:    <a href="mailto:hello@ansab.dev" className="grub-link">hello@ansab.dev</a>
+              <span className="system-cyan">Email:</span>{" "}
+              <a href="mailto:hello@ansab.dev" className="grub-link system-green">hello@ansab.dev</a>
             </p>
             <p>
-              GitHub:   <a href="https://github.com/ansab" target="_blank" rel="noopener noreferrer" className="grub-link">github.com/ansab</a>
+              <span className="system-magenta">GitHub:</span>{" "}
+              <a href="https://github.com/ansabazys" target="_blank" rel="noopener noreferrer" className="grub-link system-green">github.com/ansabazys</a>
             </p>
             <p>
-              LinkedIn: <a href="https://linkedin.com/in/ansab" target="_blank" rel="noopener noreferrer" className="grub-link">linkedin.com/in/ansab</a>
+              <span className="system-yellow">LinkedIn:</span>{" "}
+              <a href="https://linkedin.com/in/ansab" target="_blank" rel="noopener noreferrer" className="grub-link system-green">linkedin.com/in/ansab</a>
+            </p>
+            <p className="grub-muted">
+              transport: <span className="system-cyan">secure-shell</span> | status: <span className="system-green">connected</span>
             </p>
           </div>
         )}

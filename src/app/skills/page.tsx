@@ -18,9 +18,11 @@ const SKILLS_LIST = [
   { name: "AWS", group: "cloud" },
 ];
 
+type SkillPackage = (typeof SKILLS_LIST)[number];
+
 export default function SkillsPage() {
   const [commandFinished, setCommandFinished] = useState(false);
-  const [visibleSkills, setVisibleSkills] = useState<string[]>([]);
+  const [visibleSkills, setVisibleSkills] = useState<SkillPackage[]>([]);
   const router = useRouter();
 
   useEffect(() => {
