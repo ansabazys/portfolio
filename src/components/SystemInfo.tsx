@@ -53,11 +53,11 @@ const INFO_ROWS = [
 ];
 
 const TECH_STACK = [
-  ["Frontend", "React, Next.js, TypeScript", "90%"],
-  ["Backend", "NestJS, Node.js, APIs", "92%"],
-  ["Database", "PostgreSQL, ClickHouse, MongoDB", "80%"],
-  ["DevOps", "Docker, Linux, CI/CD", "70%"],
-  ["Product", "Analytics, Dashboards, UX Systems", "85%"],
+  ["Frontend", "React, Next.js, TypeScript"],
+  ["Backend", "NestJS, Node.js, APIs"],
+  ["Database", "PostgreSQL, ClickHouse, MongoDB"],
+  ["DevOps", "Docker, Linux, CI/CD"],
+  ["Product", "Analytics, Dashboards, UX Systems"],
 ];
 
 function formatDate(date: string): string {
@@ -220,13 +220,12 @@ export default function SystemInfo() {
           <section className="leading-[16px]">
             <p className="system-section-title">TECH STACK</p>
             <div className="mt-[16px]">
-              {TECH_STACK.map(([label, detail, percent], index) => (
+              {TECH_STACK.map(([label, detail], index) => (
                 <p key={label}>
                   <span className={index % 2 === 0 ? "system-green" : "system-yellow"}>
-                    {label.padEnd(9, " ")}
+                    {label.padEnd(9, " ")}:
                   </span>
-                  <span className="grub-muted"> [{percent}] </span>
-                  {detail}
+                  {" "}{detail}
                 </p>
               ))}
             </div>
