@@ -1,18 +1,38 @@
 # AnsabOS Portfolio
 
-## Getting Started
+A GNU GRUB-inspired developer portfolio built with Next.js.
 
-Run the development server:
+Boot into a Linux-inspired portfolio experience featuring:
+
+- GNU GRUB interface
+- Terminal navigation
+- Package manager skills system
+- System logs experience page
+- GitHub integration
+- AnsabOS themed UI
+
+## Preview
+
+[Live Demo](https://ansabazys.com)
+
+## Features
+
+- GRUB Boot Menu
+- Terminal Commands
+- Package Manager Skills
+- System Logs Experience
+- GitHub Stats Integration
+- Keyboard Navigation
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- TailwindCSS
+- Vercel
+
+## Run Locally
 
 ```bash
+npm install
 npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Learn More
-
-Useful resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying)
