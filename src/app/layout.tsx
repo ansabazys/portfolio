@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GNU GRUB version 2.02",
+  title: "Ansab Azys",
   description: "Boot into AnsabOS - Ansab's developer portfolio, styled as a retro Linux GRUB bootloader screen with interactive command terminals and retro system logs.",
   icons: {
     icon: "/favicon.ico",
