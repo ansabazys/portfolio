@@ -337,7 +337,7 @@ export default function SystemInfo() {
               ))}
             </div>
             <label className="system-command-row">
-              <span className="system-green">ansab@portfolio:~$</span>
+              <span className="system-green text-sm">ansab@portfolio:~$</span>
               <span className="system-command-wrap">
                 <input
                   ref={inputRef}
