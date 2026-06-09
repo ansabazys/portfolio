@@ -9,6 +9,9 @@ export function TraqoryProvider() {
       apiKey: process.env.NEXT_PUBLIC_TRAQORY_API_KEY!,
       endpoint: process.env.NEXT_PUBLIC_TRAQORY_ENDPOINT!,
       debug: false,
+
+      batchSize: 1,
+      flushInterval: 1000,
     });
   }, []);
 
