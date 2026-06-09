@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import GrubPageShell from "@/components/GrubPageShell";
+import { track } from "@traqory/sdk";
 
 export default function ResumePage() {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function ResumePage() {
 
     const timer = setTimeout(() => {
       setDownloadStarted(true);
+      track("resume_downloaded");
       const link = document.createElement("a");
       link.href = "/resume.pdf";
       link.download = "ansab_resume.pdf";

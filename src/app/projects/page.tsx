@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import GrubPageShell from "@/components/GrubPageShell";
 import { usePinnedProjects } from "@/hooks/usePinnedProjects";
 import type { GithubProject } from "@/types/github";
+import { track } from "@traqory/sdk";
 
 function toDirectoryName(projectName: string): string {
   return `${projectName
@@ -26,16 +27,20 @@ export default function ProjectsPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
   const { data: projects, isLoading, error } = usePinnedProjects();
-  const activeIndex = projects.length > 0 ? Math.min(selectedIndex, projects.length - 1) : 0;
+  const activeIndex =
+    projects.length > 0 ? Math.min(selectedIndex, projects.length - 1) : 0;
   const activeProject: GithubProject | null = projects[activeIndex] ?? null;
 
-  const loadingMessages = useMemo(() => [
-    "Loading GitHub profile...",
-    "Loading repositories...",
-    "Loading pinned projects...",
-    "Loading commit history...",
-    "Done.",
-  ], []);
+  const loadingMessages = useMemo(
+    () => [
+      "Loading GitHub profile...",
+      "Loading repositories...",
+      "Loading pinned projects...",
+      "Loading commit history...",
+      "Done.",
+    ],
+    [],
+  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -44,11 +49,17 @@ export default function ProjectsPage() {
       switch (e.key) {
         case "ArrowUp":
           e.preventDefault();
-          setSelectedIndex((prev) => (prev > 0 ? Math.min(prev - 1, projects.length - 1) : projects.length - 1));
+          setSelectedIndex((prev) =>
+            prev > 0
+              ? Math.min(prev - 1, projects.length - 1)
+              : projects.length - 1,
+          );
           break;
         case "ArrowDown":
           e.preventDefault();
-          setSelectedIndex((prev) => (prev < projects.length - 1 ? prev + 1 : 0));
+          setSelectedIndex((prev) =>
+            prev < projects.length - 1 ? prev + 1 : 0,
+          );
           break;
         case "Escape":
           e.preventDefault();
@@ -63,8 +74,21 @@ export default function ProjectsPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [projects.length, router]);
 
+  useEffect(() => {
+    if (!activeProject) return;
+
+    track("project_viewed", {
+      project: activeProject.name,
+      language: activeProject.language?.name,
+    });
+  }, [activeProject]);
+
   return (
-    <GrubPageShell title="PROJECTS" footerLeft="Use the Up and Down keys to inspect pinned repositories." footerRight="Module: ACTIVE.">
+    <GrubPageShell
+      title="PROJECTS"
+      footerLeft="Use the Up and Down keys to inspect pinned repositories."
+      footerRight="Module: ACTIVE."
+    >
       <div className="leading-[16px]">
         <p>
           <span className="system-green">ansab@portfolio:~$</span> ls projects
@@ -109,26 +133,60 @@ export default function ProjectsPage() {
 
             <div>
               <p>
-                <span className="system-green">ansab@portfolio</span>:{toDirectoryName(activeProject.name)}$ cat project-info
+                <span className="system-green">ansab@portfolio</span>:
+                {toDirectoryName(activeProject.name)}$ cat project-info
               </p>
               <div className="mt-[16px]">
-                <p><span className="system-cyan">Project Name :</span> {activeProject.name}</p>
-                <p><span className="system-cyan">Description  :</span> {activeProject.description ?? "No description provided."}</p>
-                <p><span className="system-cyan">Language     :</span> {activeProject.language?.name ?? "Unknown"}</p>
-                <p><span className="system-cyan">Stars        :</span> {activeProject.stars}</p>
-                <p><span className="system-cyan">Forks        :</span> {activeProject.forks}</p>
-                <p><span className="system-cyan">Topics       :</span> {activeProject.topics.length > 0 ? activeProject.topics.join(", ") : "None"}</p>
-                <p><span className="system-cyan">Last Updated :</span> {formatDate(activeProject.updatedAt)}</p>
                 <p>
-                  <span className="system-cyan">GitHub URL   :</span>{" "}
-                  <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className="grub-link">
+                  <span className="system-cyan">Project Name :</span>{" "}
+                  {activeProject.name}
+                </p>
+                <p>
+                  <span className="system-cyan">Description :</span>{" "}
+                  {activeProject.description ?? "No description provided."}
+                </p>
+                <p>
+                  <span className="system-cyan">Language :</span>{" "}
+                  {activeProject.language?.name ?? "Unknown"}
+                </p>
+                <p>
+                  <span className="system-cyan">Stars :</span>{" "}
+                  {activeProject.stars}
+                </p>
+                <p>
+                  <span className="system-cyan">Forks :</span>{" "}
+                  {activeProject.forks}
+                </p>
+                <p>
+                  <span className="system-cyan">Topics :</span>{" "}
+                  {activeProject.topics.length > 0
+                    ? activeProject.topics.join(", ")
+                    : "None"}
+                </p>
+                <p>
+                  <span className="system-cyan">Last Updated :</span>{" "}
+                  {formatDate(activeProject.updatedAt)}
+                </p>
+                <p>
+                  <span className="system-cyan">GitHub URL :</span>{" "}
+                  <a
+                    href={activeProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="grub-link"
+                  >
                     {activeProject.githubUrl}
                   </a>
                 </p>
                 <p>
-                  <span className="system-cyan">Live URL     :</span>{" "}
+                  <span className="system-cyan">Live URL :</span>{" "}
                   {activeProject.homepageUrl ? (
-                    <a href={activeProject.homepageUrl} target="_blank" rel="noopener noreferrer" className="grub-link">
+                    <a
+                      href={activeProject.homepageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="grub-link"
+                    >
                       {activeProject.homepageUrl}
                     </a>
                   ) : (
