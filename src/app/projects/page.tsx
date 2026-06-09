@@ -182,10 +182,15 @@ export default function ProjectsPage() {
                   <span className="system-cyan">Live URL :</span>{" "}
                   {activeProject.homepageUrl ? (
                     <a
-                      href={activeProject.homepageUrl}
+                      href={activeProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="grub-link"
+                      onClick={() =>
+                        track("github_project_clicked", {
+                          project: activeProject.name,
+                        })
+                      }
                     >
                       {activeProject.homepageUrl}
                     </a>
