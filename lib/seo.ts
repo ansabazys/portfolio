@@ -8,10 +8,10 @@ export const siteConfig = {
   positioning: "I build modern web applications, SaaS products and digital experiences for businesses and startups.",
   location: "Kerala, India",
   availability: "Available for projects",
-  email: "hello@ansab.dev",
-  github: "https://github.com/ansab",
-  linkedin: "https://linkedin.com/in/ansab",
-  url: "https://ansab.dev",
+  email: "ansabazys@gmail.com",
+  github: "https://github.com/ansabazys",
+  linkedin: "https://linkedin.com/in/ansabazys",
+  url: "https://ansabazys.com",
   description:
     "Personal portfolio of Mohammed Ansab K, Full-Stack Developer building high-performance SaaS products, e-commerce platforms, and calm web applications.",
 };
