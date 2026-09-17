@@ -43,7 +43,7 @@ export function Hero() {
       >
         {/* Name & Subtitle */}
         <motion.div variants={itemVariants}>
-          <h1 className="text-base sm:text-lg font-semibold text-[#141413] tracking-tight">
+          <h1 className="text-lg font-semibold text-[#141413] tracking-tight">
             Ansab Azys
           </h1>
           <p className="text-sm text-[#84837E] mt-0.5">
@@ -52,7 +52,7 @@ export function Hero() {
         </motion.div>
 
         {/* Bio Paragraphs */}
-        <motion.div variants={itemVariants} className="mt-6 space-y-4 text-sm sm:text-base leading-relaxed text-[#5E5D59]">
+        <motion.div variants={itemVariants} className="mt-6 space-y-4 text-base leading-relaxed text-[#5E5D59]">
           <p>
             I build modern web applications, SaaS products, and digital experiences based in <span className="underline underline-offset-4 decoration-[#84837E]/60 text-[#141413]">Kerala, India</span>. Focused on resilient architectures, database performance, and calm, typography-led software.
           </p>

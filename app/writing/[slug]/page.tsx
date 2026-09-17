@@ -71,17 +71,17 @@ export default async function ArticleDetailPage({
             {article.title}
           </h1>
 
-          <p className="mt-4 text-base sm:text-lg text-[#5E5D59] leading-relaxed">
+          <p className="mt-4 text-lg text-[#5E5D59] leading-relaxed">
             {article.description}
           </p>
         </header>
 
         {/* Article Body */}
-        <article className="border-t border-[#EAE8E2] pt-10 sm:pt-14 space-y-10 sm:space-y-12 text-sm sm:text-base leading-relaxed text-[#5E5D59]">
+        <article className="border-t border-[#EAE8E2] pt-10 sm:pt-14 space-y-10 sm:space-y-12 text-base leading-relaxed text-[#5E5D59]">
           {article.content.map((section, idx) => (
             <section key={idx} className="space-y-4">
               {section.heading && (
-                <h2 className="text-base sm:text-lg font-medium text-[#141413] tracking-tight pt-2">
+                <h2 className="text-lg font-medium text-[#141413] tracking-tight pt-2">
                   {section.heading}
                 </h2>
               )}
@@ -91,7 +91,7 @@ export default async function ArticleDetailPage({
               ))}
 
               {section.quote && (
-                <blockquote className="my-6 border-l-2 border-[#141413] pl-4 py-1 italic text-[#141413] text-sm sm:text-base">
+                <blockquote className="my-6 border-l-2 border-[#141413] pl-4 py-1 italic text-[#141413] text-base">
                   &ldquo;{section.quote}&rdquo;
                 </blockquote>
               )}

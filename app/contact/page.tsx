@@ -18,10 +18,10 @@ export default function ContactPage() {
           <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
             Contact
           </h1>
-          <h2 className="mt-4 text-xl sm:text-2xl font-medium tracking-tight text-[#141413]">
+          <h2 className="mt-4 text-2xl font-medium tracking-tight text-[#141413]">
             Have a project in mind?
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#5E5D59] leading-relaxed max-w-lg">
+          <p className="mt-2 text-base text-[#5E5D59] leading-relaxed max-w-lg">
             Tell me what you&apos;re building. I am always happy to discuss new ideas,
             architectural challenges, or potential collaborations.
           </p>
@@ -35,7 +35,7 @@ export default function ContactPage() {
           </div>
 
           {/* Direct channels */}
-          <div className="md:col-span-5 md:pl-6 space-y-8 text-xs sm:text-sm">
+          <div className="md:col-span-5 md:pl-6 space-y-8 text-sm">
             <div>
               <span className="block text-[11px] uppercase tracking-wider text-[#84837E] font-medium mb-1">
                 Direct Email

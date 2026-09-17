@@ -18,14 +18,14 @@ export default function AboutPage() {
           <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
             About
           </h1>
-          <p className="mt-4 text-xl sm:text-2xl font-medium tracking-tight text-[#141413] leading-snug max-w-xl">
+          <p className="mt-4 text-2xl font-medium tracking-tight text-[#141413] leading-snug max-w-xl">
             Mohammed Ansab K is a full-stack engineer focused on building resilient web
             architectures and calm, typography-driven products.
           </p>
         </header>
 
         {/* Content Sections */}
-        <div className="space-y-16 sm:space-y-20 text-sm sm:text-base leading-relaxed text-[#5E5D59]">
+        <div className="space-y-16 sm:space-y-20 text-base leading-relaxed text-[#5E5D59]">
           {/* Who I am */}
           <section className="border-t border-[#EAE8E2] pt-8 sm:pt-10">
             <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-4">
@@ -98,7 +98,7 @@ export default function AboutPage() {
                 <h3 className="text-sm font-medium text-[#141413] mb-2">
                   Performance by Default
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
                   Speed is a feature. I prioritize Server Components, minimize client-side
                   JavaScript, leverage edge caches, and optimize database queries to ensure
                   instantaneous response times.
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 <h3 className="text-sm font-medium text-[#141413] mb-2">
                   Architectural Simplicity
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
                   Complexity is easy; simplicity requires discipline. I reach for proven,
                   predictable tools first, introducing specialized engines (like ClickHouse or
                   gRPC) only when real performance bottlenecks demand them.
@@ -120,7 +120,7 @@ export default function AboutPage() {
                 <h3 className="text-sm font-medium text-[#141413] mb-2">
                   Calm, Typography-Driven UX
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
                   Software shouldn&apos;t shout. I avoid gratuitous decorative gimmicks, relying
                   instead on crisp typography, generous spacing, and purposeful micro-interactions.
                 </p>
@@ -130,7 +130,7 @@ export default function AboutPage() {
                 <h3 className="text-sm font-medium text-[#141413] mb-2">
                   Full-Cycle Ownership
                 </h3>
-                <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
                   From writing API contracts and setting up migration workflows to testing
                   edge cases and configuring deployment pipelines, I take end-to-end
                   responsibility for what ships.
@@ -190,7 +190,7 @@ export default function AboutPage() {
                 <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
                   Current Focus
                 </h2>
-                <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
                   Deepening work on high-throughput columnar databases, local-first offline
                   synchronization algorithms, and exploring calm software philosophies.
                 </p>
@@ -200,7 +200,7 @@ export default function AboutPage() {
                 <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
                   Location & Availability
                 </h2>
-                <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
                   Living and working in Kerala, India (UTC +5:30). Available for select
                   remote contract roles, product architecture, and technical consulting.
                 </p>

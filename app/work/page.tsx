@@ -18,7 +18,7 @@ export default function WorkPage() {
           <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
             Work
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-[#5E5D59] leading-relaxed max-w-lg">
+          <p className="mt-4 text-base text-[#5E5D59] leading-relaxed max-w-lg">
             A selection of software platforms, distributed architectures, and applications
             built for production.
           </p>

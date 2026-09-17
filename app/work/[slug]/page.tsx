@@ -68,7 +68,7 @@ export default async function ProjectDetailPage({
           <h1 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-[#141413]">
             {project.title}
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-[#5E5D59] leading-relaxed max-w-2xl">
+          <p className="mt-4 text-lg text-[#5E5D59] leading-relaxed max-w-2xl">
             {project.description}
           </p>
         </header>
@@ -121,7 +121,7 @@ export default async function ProjectDetailPage({
         </div>
 
         {/* Case Study Content */}
-        <article className="space-y-12 sm:space-y-16 text-sm sm:text-base leading-relaxed text-[#5E5D59]">
+        <article className="space-y-12 sm:space-y-16 text-base leading-relaxed text-[#5E5D59]">
           {/* Overview */}
           <section>
             <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
@@ -136,7 +136,7 @@ export default async function ProjectDetailPage({
               <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
                 The Problem
               </h2>
-              <p className="text-sm sm:text-base leading-relaxed">
+              <p className="text-base leading-relaxed">
                 {project.problem}
               </p>
             </section>
@@ -145,7 +145,7 @@ export default async function ProjectDetailPage({
               <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
                 The Solution
               </h2>
-              <p className="text-sm sm:text-base leading-relaxed">
+              <p className="text-base leading-relaxed">
                 {project.solution}
               </p>
             </section>
@@ -190,7 +190,7 @@ export default async function ProjectDetailPage({
             <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
               Architecture & Data Flow
             </h2>
-            <p className="font-mono text-xs sm:text-sm bg-[#F3F2EE] p-4 rounded-sm border border-[#EAE8E2] text-[#141413] leading-relaxed">
+            <p className="font-mono text-sm bg-[#F3F2EE] p-4 rounded-sm border border-[#EAE8E2] text-[#141413] leading-relaxed">
               {project.architecture}
             </p>
           </section>
@@ -201,7 +201,7 @@ export default async function ProjectDetailPage({
               <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
                 My Contribution
               </h2>
-              <p className="text-sm sm:text-base leading-relaxed">
+              <p className="text-base leading-relaxed">
                 {project.myContribution}
               </p>
             </section>
@@ -210,7 +210,7 @@ export default async function ProjectDetailPage({
               <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
                 Outcome
               </h2>
-              <p className="text-sm sm:text-base leading-relaxed">
+              <p className="text-base leading-relaxed">
                 {project.outcome}
               </p>
             </section>

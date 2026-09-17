@@ -23,7 +23,7 @@ export function Sidebar() {
       <div className="md:hidden sticky top-0 z-40 flex items-center justify-between w-full px-6 py-4 bg-[#FAFAF8]/90 backdrop-blur-md">
         <Link
           href="/"
-          className="text-sm font-semibold text-[#141413]"
+          className="text-base font-semibold text-[#141413]"
           onClick={() => setMobileMenuOpen(false)}
         >
           Home
@@ -31,7 +31,7 @@ export function Sidebar() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-sm text-[#6B6A67] hover:text-[#141413] py-1 px-2 focus-visible:outline-none transition-colors font-medium"
+          className="text-base text-[#6B6A67] hover:text-[#141413] py-1 px-2 focus-visible:outline-none transition-colors font-medium"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle Navigation Menu"
         >
@@ -83,7 +83,7 @@ export function Sidebar() {
         {/* Navigation Links - Stacked vertically (one below one) */}
         <nav
           aria-label="Main Navigation"
-          className="flex flex-col space-y-1 uppercase"
+          className="flex flex-col space-y-1 "
         >
           {navLinks.map((link) => {
             const isActive =

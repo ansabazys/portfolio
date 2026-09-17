@@ -24,7 +24,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="py-8 border-y border-[#EAE8E2] text-xs sm:text-sm text-[#141413] space-y-2">
+      <div className="py-8 border-y border-[#EAE8E2] text-sm text-[#141413] space-y-2">
         <p className="font-medium">Message sent successfully.</p>
         <p className="text-[#5E5D59]">
           Thank you for reaching out. I typically review inquiries and reply within 24
@@ -123,7 +123,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="group inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#141413] hover:opacity-70 disabled:opacity-50 transition-opacity"
+          className="group inline-flex items-center gap-2 text-sm font-medium text-[#141413] hover:opacity-70 disabled:opacity-50 transition-opacity"
         >
           <span>{status === "submitting" ? "Sending..." : "Send"}</span>
           <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">

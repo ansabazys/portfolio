@@ -19,7 +19,7 @@ export default function ServicesPage() {
           <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
             Services
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-[#5E5D59] leading-relaxed max-w-xl">
+          <p className="mt-4 text-base text-[#5E5D59] leading-relaxed max-w-xl">
             Engineering services focused on high-throughput architectures, resilient systems,
             and calm, intuitive user interfaces.
           </p>
@@ -37,16 +37,16 @@ export default function ServicesPage() {
                   {service.number}
                 </span>
                 <span className="text-xs text-[#84837E] select-none">—</span>
-                <h2 className="text-lg sm:text-xl font-medium tracking-tight text-[#141413]">
+                <h2 className="text-xl font-medium tracking-tight text-[#141413]">
                   {service.title}
                 </h2>
               </div>
 
-              <p className="text-sm sm:text-base text-[#141413] font-medium leading-relaxed mb-4 max-w-2xl">
+              <p className="text-base text-[#141413] font-medium leading-relaxed mb-4 max-w-2xl">
                 {service.tagline}
               </p>
 
-              <p className="text-xs sm:text-sm text-[#5E5D59] leading-relaxed mb-6 max-w-2xl">
+              <p className="text-sm text-[#5E5D59] leading-relaxed mb-6 max-w-2xl">
                 {service.description}
               </p>
 
@@ -86,17 +86,17 @@ export default function ServicesPage() {
         {/* Bottom CTA */}
         <section className="mt-24 pt-12 border-t border-[#EAE8E2]">
           <div className="max-w-md">
-            <h3 className="text-base sm:text-lg font-medium text-[#141413] tracking-tight">
+            <h3 className="text-lg font-medium text-[#141413] tracking-tight">
               Have a project in mind?
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-[#5E5D59] leading-relaxed">
+            <p className="mt-2 text-sm text-[#5E5D59] leading-relaxed">
               Whether you are scoping a greenfield product or refactoring an existing system,
               I am available for select collaborations.
             </p>
             <div className="mt-6">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#141413] hover:opacity-70 transition-opacity"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-[#141413] hover:opacity-70 transition-opacity"
               >
                 <span>Start a conversation</span>
                 <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">

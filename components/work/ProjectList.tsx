@@ -42,17 +42,17 @@ export function ProjectList({ projects }: ProjectListProps) {
               <div className="flex items-baseline justify-between gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-3">
-                    <h3 className="text-base sm:text-lg font-medium text-[#141413] tracking-tight transition-transform duration-200 ease-out group-hover:translate-x-1">
+                    <h3 className="text-lg font-medium text-[#141413] tracking-tight transition-transform duration-200 ease-out group-hover:translate-x-1">
                       {project.title}
                     </h3>
                   </div>
-                  <p className="text-xs sm:text-sm text-[#84837E]">
+                  <p className="text-sm text-[#84837E]">
                     {project.category}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-4 text-xs text-[#84837E]">
-                  <span className="font-mono text-[11px] sm:text-xs">
+                  <span className="font-mono text-xs">
                     {project.year}
                   </span>
                   <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-1 group-hover:text-[#141413]">

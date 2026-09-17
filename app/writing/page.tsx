@@ -19,7 +19,7 @@ export default function WritingPage() {
           <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
             Writing
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-[#5E5D59] leading-relaxed max-w-lg">
+          <p className="mt-4 text-base text-[#5E5D59] leading-relaxed max-w-lg">
             Thoughts, technical retrospectives, and engineering patterns gathered from
             building production applications.
           </p>
@@ -39,11 +39,11 @@ export default function WritingPage() {
                   <span>{article.readingTime}</span>
                 </div>
 
-                <h2 className="text-base sm:text-lg font-medium text-[#141413] tracking-tight group-hover:text-[#141413] transition-transform duration-200 ease-out group-hover:translate-x-1">
+                <h2 className="text-lg font-medium text-[#141413] tracking-tight group-hover:text-[#141413] transition-transform duration-200 ease-out group-hover:translate-x-1">
                   {article.title}
                 </h2>
 
-                <p className="mt-2 text-xs sm:text-sm text-[#5E5D59] leading-relaxed max-w-2xl">
+                <p className="mt-2 text-sm text-[#5E5D59] leading-relaxed max-w-2xl">
                   {article.description}
                 </p>
 
