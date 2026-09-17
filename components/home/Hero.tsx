@@ -1,15 +1,44 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/seo";
-import Accordion5 from "@/components/ui/accordion-05";
+import { projects } from "@/lib/projects";
+import { FAQAccordion } from "@/components/home/FAQAccordion";
 
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.linkedin },
   { label: "GitHub", href: siteConfig.github },
   { label: "Email", href: `mailto:${siteConfig.email}` },
+];
+
+const homeServices = [
+  {
+    slug: "brand-identity",
+    number: "01",
+    title: "Brand & Identity",
+    description: "Logos, visual identities, and brand systems.",
+  },
+  {
+    slug: "product-ui-design",
+    number: "02",
+    title: "Product & UI Design",
+    description: "Interfaces, user flows, and thoughtful design systems.",
+  },
+  {
+    slug: "web-development",
+    number: "03",
+    title: "Web Development",
+    description: "Websites and digital experiences built with care.",
+  },
+  {
+    slug: "application-development",
+    number: "04",
+    title: "Application Development",
+    description: "SaaS products, dashboards, and custom applications.",
+  },
 ];
 
 export function Hero() {
@@ -62,10 +91,10 @@ export function Hero() {
         {/* Bio Paragraphs */}
         <motion.div variants={itemVariants} className="mt-6 space-y-4 text-base leading-relaxed text-[#5E5D59]">
           <p>
-            I build modern web applications, SaaS products, and digital experiences based in <span className="underline underline-offset-4 decoration-[#84837E]/60 text-[#141413]">Kerala, India</span>. Focused on resilient architectures, database performance, and calm, typography-led software.
+            I design and build brands, interfaces, applications, and digital products for businesses and founders turning ideas into something real. I bring <span className="underline underline-offset-4 decoration-[#84837E]/60 text-[#141413]">design and development</span> together to create work that feels distinctive, intuitive, and thoughtfully made.
           </p>
           <p>
-            Currently engineering scalable web systems and exploring calm software principles.
+            Available for <span className="underline underline-offset-4 decoration-[#84837E]/60 text-[#141413]">freelance projects</span> across branding, identity and UI design, websites, SaaS products, and custom applications.
           </p>
         </motion.div>
 
@@ -87,10 +116,116 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* Accordion */}
-        <motion.div variants={itemVariants} className="mt-8 pt-2">
-          <Accordion5 />
+        {/* Selected Work */}
+        <motion.div variants={itemVariants} className="mt-10 pt-2">
+          <div className="flex items-center justify-between pb-2">
+            <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium">
+              Selected Work
+            </h2>
+            <Link
+              href="/work"
+              className="text-sm text-[#84837E] hover:text-[#141413] transition-colors"
+            >
+              View all
+            </Link>
+          </div>
+
+          <div className="divide-y divide-[#EAE8E2]">
+            {projects.slice(0, 3).map((project) => (
+              <Link
+                key={project.slug}
+                href={`/work/${project.slug}`}
+                className="group flex items-baseline justify-between gap-4 py-3.5 transition-colors"
+              >
+                <div className="space-y-0.5 min-w-0">
+                  <h3 className="text-base font-medium text-[#141413] group-hover:text-blue-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-[#84837E] truncate">
+                    {project.category}
+                  </p>
+                </div>
+                <div className="text-sm text-[#84837E] shrink-0 font-mono">
+                  <span>{project.year}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </motion.div>
+
+        {/* Services */}
+        <motion.div variants={itemVariants} className="mt-10 pt-2">
+          <div className="pb-2">
+            <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium">
+              Services
+            </h2>
+          </div>
+
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
+            {homeServices.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group block py-1 transition-transform duration-150 ease-out hover:translate-x-0.5"
+              >
+                <span className="block text-xs font-mono text-[#84837E] mb-1.5 transition-colors group-hover:text-blue-600">
+                  {service.number}
+                </span>
+                <div className="flex items-center gap-1.5 mb-1">
+                  <h3 className="text-base font-medium text-[#141413] tracking-tight group-hover:text-blue-600 transition-colors">
+                    {service.title}
+                  </h3>
+                  <span className="inline-block text-sm text-blue-600 opacity-0 -translate-x-1 transition-all duration-150 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+                    →
+                  </span>
+                </div>
+                <p className="text-sm text-[#5E5D59] leading-relaxed">
+                  {service.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* FAQ */}
+        <motion.div variants={itemVariants} className="mt-12 pt-2">
+          <div className="pb-2">
+            <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium">
+              FAQ
+            </h2>
+          </div>
+          <FAQAccordion />
+        </motion.div>
+
+        {/* Contact / Closing CTA */}
+        <motion.section
+          variants={itemVariants}
+          className="mt-10 pt-2"
+          aria-label="Contact and Inquiry"
+        >
+          <h2 className="text-base font-medium tracking-tight text-[#141413]">
+            Have an idea worth building?
+          </h2>
+
+          <p className="mt-3 text-base text-[#5E5D59] leading-relaxed">
+            Have a project in mind, something that needs a better direction, or simply an idea you&apos;d like to explore? Tell me a little about it and let&apos;s see what we can make together.
+          </p>
+
+          <div className="mt-5">
+            <Link
+              href="/contact"
+              className="inline-block text-base font-medium text-[#141413] underline underline-offset-4 decoration-[#84837E]/60 hover:text-blue-600 hover:decoration-blue-600 transition-colors"
+            >
+              Start a conversation
+            </Link>
+          </div>
+
+          {/* Colophon / Copyright */}
+          <div className="mt-12 text-xs text-[#84837E] leading-relaxed space-y-0.5 select-none">
+            <p>© 2026 Ansab Azys</p>
+            <p>Designed &amp; built by me.</p>
+          </div>
+        </motion.section>
       </motion.div>
     </Container>
   );

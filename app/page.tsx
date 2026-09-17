@@ -3,12 +3,12 @@ import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
   description:
-    "Ansab Azys is a Full-Stack Developer building modern web applications, SaaS products and digital experiences for businesses and startups.",
+    "Ansab Azys designs and builds brands, interfaces, applications, and digital products for businesses and founders turning ideas into something real.",
 });
 
 export default function HomePage() {
   return (
-    <main className="py-20 sm:py-28 md:py-32">
+    <main className="pt-20 sm:pt-28 md:pt-32 pb-6 sm:pb-8">
       <Hero />
     </main>
   );
