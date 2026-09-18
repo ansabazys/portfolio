@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Sidebar } from "@/components/navigation/Sidebar";
+import { Footer } from "@/components/navigation/Footer";
 import { siteConfig } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -32,6 +33,23 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  jobTitle: "Designer & Full-Stack Developer",
+  sameAs: [siteConfig.github, siteConfig.linkedin],
+  knowsAbout: [
+    "Product Design",
+    "UI/UX Design",
+    "Brand & Identity",
+    "Web Development",
+    "SaaS Application Architecture",
+    "Full-Stack Engineering",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,17 +58,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={geistSans.variable}>
       <body className="min-h-screen bg-[#FAFAF8] text-[#141413] antialiased selection:bg-[#141413] selection:text-[#FAFAF8]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col md:flex-row">
           <Sidebar />
           <div className="flex-1 flex flex-col min-w-0">
             <div className="flex-1 flex flex-col">{children}</div>
+            <Footer />
           </div>
         </div>
-        <Script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "1f926fc946c84971b817c8e415ef41d8"}'
-        />
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "1f926fc946c84971b817c8e415ef41d8"}'
+          />
+        )}
       </body>
     </html>
   );

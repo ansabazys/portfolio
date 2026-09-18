@@ -74,9 +74,9 @@ export function Hero() {
     <Container size="md">
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         animate="visible"
-        className="max-w-md select-none"
+        className="max-w-md"
       >
         {/* Name & Subtitle */}
         <motion.div variants={itemVariants}>
@@ -84,7 +84,7 @@ export function Hero() {
             Ansab Azys
           </h1>
           <p className="text-sm text-[#84837E] mt-0.5">
-            Full stack developer
+            Designer &amp; Full-Stack Developer
           </p>
         </motion.div>
 
@@ -109,7 +109,7 @@ export function Hero() {
               href={social.href}
               target={social.href.startsWith("mailto:") ? undefined : "_blank"}
               rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="animated-underline text-[#5E5D59]"
+              className="animated-underline text-[#5E5D59] py-1"
             >
               {social.label}
             </a>
@@ -141,11 +141,11 @@ export function Hero() {
                   <h3 className="text-base font-medium text-[#141413] group-hover:text-blue-600 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-[#84837E] truncate">
-                    {project.category}
+                  <p className="text-xs text-[#666561] truncate font-medium">
+                    {project.category} · {project.role}
                   </p>
                 </div>
-                <div className="text-sm text-[#84837E] shrink-0 font-mono">
+                <div className="text-xs text-[#666561] shrink-0 font-mono pt-0.5">
                   <span>{project.year}</span>
                 </div>
               </Link>
@@ -215,12 +215,6 @@ export function Hero() {
             >
               Start a conversation
             </Link>
-          </div>
-
-          {/* Colophon / Copyright */}
-          <div className="mt-12 text-xs text-[#84837E] leading-relaxed space-y-0.5 select-none">
-            <p>© 2026 Ansab Azys</p>
-            <p>Designed &amp; built by me.</p>
           </div>
         </motion.section>
       </motion.div>

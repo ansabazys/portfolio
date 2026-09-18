@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
   { href: "/writing", label: "Writing" },
   { href: "/contact", label: "Contact" },
 ];
@@ -134,7 +135,7 @@ export function Sidebar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-base py-1 transition-colors ${isActive
+                    className={`text-base py-1.5 min-h-[38px] flex items-center transition-colors ${isActive
                       ? "text-[#141413] font-bold"
                       : "text-[#6B6A67] font-normal hover:text-[#141413]"
                       }`}

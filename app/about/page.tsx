@@ -6,7 +6,7 @@ import { constructMetadata } from "@/lib/seo";
 export const metadata = constructMetadata({
   title: "About",
   description:
-    "Background, engineering philosophy, and technical focus of Mohammed Ansab K.",
+    "Background, design philosophy, and technical focus of Ansab Azys.",
 });
 
 export default function AboutPage() {
@@ -19,8 +19,8 @@ export default function AboutPage() {
             About
           </h1>
           <p className="mt-4 text-2xl font-medium tracking-tight text-[#141413] leading-snug max-w-xl">
-            Mohammed Ansab K is a full-stack engineer focused on building resilient web
-            architectures and calm, typography-driven products.
+            Ansab Azys is a product designer and full-stack engineer focused on building
+            resilient web architectures and calm, typography-driven digital products.
           </p>
         </header>
 
@@ -207,7 +207,7 @@ export default function AboutPage() {
                 <div className="mt-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center text-xs font-medium text-[#141413] hover:opacity-70 transition-opacity"
+                    className="animated-underline text-xs font-medium text-[#141413]"
                   >
                     <span>Get in touch</span>
                   </Link>

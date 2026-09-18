@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 export const siteConfig = {
   name: "Ansab Azys",
-  title: "Ansab Azys — Full-Stack Developer",
+  title: "Ansab Azys — Designer & Full-Stack Developer",
   shortTitle: "ANSAB",
-  role: "Full-Stack Developer",
+  role: "Designer & Full-Stack Developer",
   positioning: "I design and build brands, interfaces, applications, and digital products for businesses and founders turning ideas into something real.",
   location: "Kerala, India",
   availability: "Available for projects",
@@ -14,7 +14,7 @@ export const siteConfig = {
   linkedin: "https://linkedin.com/in/ansabazys",
   url: "https://ansabazys.com",
   description:
-    "Personal portfolio of Mohammed Ansab K, Full-Stack Developer building high-performance SaaS products, e-commerce platforms, and calm web applications.",
+    "Personal portfolio of Ansab Azys, Designer & Full-Stack Developer creating brand identities, thoughtful user interfaces, SaaS applications, and calm digital products.",
 };
 
 export function constructMetadata({

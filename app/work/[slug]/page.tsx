@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { projects, Project } from "@/lib/projects";
 import { constructMetadata } from "@/lib/seo";
+import { ProjectVisualPreview } from "@/components/work/ProjectVisualPreview";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -60,7 +61,7 @@ export default async function ProjectDetailPage({
         </div>
 
         {/* Header */}
-        <header className="mb-12 sm:mb-16">
+        <header className="mb-10 sm:mb-12">
           <span className="text-xs uppercase tracking-widest text-[#84837E] font-medium">
             {project.category}
           </span>
@@ -71,6 +72,11 @@ export default async function ProjectDetailPage({
             {project.description}
           </p>
         </header>
+
+        {/* Visual Project Interface Preview */}
+        <div className="mb-10 sm:mb-12">
+          <ProjectVisualPreview slug={project.slug} />
+        </div>
 
         {/* Project Meta Details */}
         <div className="border-y border-[#EAE8E2] py-6 sm:py-8 my-10 grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs">
@@ -189,7 +195,7 @@ export default async function ProjectDetailPage({
             <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-3">
               Architecture & Data Flow
             </h2>
-            <p className="font-mono text-sm bg-[#F3F2EE] p-4 rounded-sm border border-[#EAE8E2] text-[#141413] leading-relaxed">
+            <p className="font-mono text-xs sm:text-sm bg-[#F3F2EE] p-4 rounded-sm border border-[#EAE8E2] text-[#141413] leading-relaxed break-words overflow-x-auto">
               {project.architecture}
             </p>
           </section>
@@ -216,10 +222,30 @@ export default async function ProjectDetailPage({
           </div>
         </article>
 
+        {/* Project Inquiry CTA */}
+        <section className="mt-16 pt-10 border-t border-[#EAE8E2]" aria-label="Work Inquiry">
+          <div className="max-w-md">
+            <h2 className="text-base font-medium text-[#141413] tracking-tight">
+              Have a similar project in mind?
+            </h2>
+            <p className="mt-2 text-sm text-[#5E5D59] leading-relaxed">
+              Available for select freelance engagements, UI design, and end-to-end full-stack development.
+            </p>
+            <div className="mt-4">
+              <Link
+                href="/contact"
+                className="animated-underline text-sm font-medium text-[#141413]"
+              >
+                Start a conversation
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Bottom Pagination */}
         <nav
           aria-label="Project Navigation"
-          className="mt-20 pt-8 border-t border-[#EAE8E2] flex items-center justify-between text-xs"
+          className="mt-12 pt-8 border-t border-[#EAE8E2] flex items-center justify-between text-xs"
         >
           {prevProject ? (
             <Link

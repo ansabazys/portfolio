@@ -2,8 +2,16 @@
 
 import React, { useState } from "react";
 
+import { siteConfig } from "@/lib/seo";
+
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [submittedData, setSubmittedData] = useState({
+    name: "",
+    email: "",
+    project: "",
+    message: "",
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,28 +23,59 @@ export function ContactForm() {
     e.preventDefault();
     setStatus("submitting");
 
-    // Simulate clean, quiet submission
+    const subject = encodeURIComponent(
+      formData.project
+        ? `Project Inquiry: ${formData.project} — ${formData.name}`
+        : `Project Inquiry from ${formData.name}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nProject: ${formData.project}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoUrl = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+
+    setSubmittedData(formData);
+    setFormData({ name: "", email: "", project: "", message: "" });
+
+    // Open user's default email client with pre-filled details
+    window.location.href = mailtoUrl;
+
     setTimeout(() => {
       setStatus("success");
-      setFormData({ name: "", email: "", project: "", message: "" });
-    }, 600);
+    }, 400);
   };
 
   if (status === "success") {
+    const backupMailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+      `Project Inquiry from ${submittedData.name}`
+    )}&body=${encodeURIComponent(
+      `Name: ${submittedData.name}\nEmail: ${submittedData.email}\n\n${submittedData.message}`
+    )}`;
+
     return (
-      <div className="py-8 border-y border-[#EAE8E2] text-sm text-[#141413] space-y-2">
-        <p className="font-medium">Message sent successfully.</p>
-        <p className="text-[#5E5D59]">
-          Thank you for reaching out. I typically review inquiries and reply within 24
-          hours.
+      <div className="py-8 border-y border-[#EAE8E2] text-sm text-[#141413] space-y-3">
+        <p className="font-medium text-base">Inquiry initiated.</p>
+        <p className="text-[#5E5D59] leading-relaxed">
+          Your default email application was prompted with your project details. If it didn&apos;t open automatically, you can{" "}
+          <a
+            href={backupMailto}
+            className="animated-underline font-medium text-[#141413]"
+          >
+            send the email directly here
+          </a>
+          .
         </p>
-        <button
-          type="button"
-          onClick={() => setStatus("idle")}
-          className="animated-underline mt-4 text-xs text-[#84837E]"
-        >
-          Send another message
-        </button>
+        <p className="text-xs text-[#666561]">
+          I typically review inquiries and reply within 24 hours.
+        </p>
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            className="animated-underline text-xs text-[#666561]"
+          >
+            Send another message
+          </button>
+        </div>
       </div>
     );
   }
