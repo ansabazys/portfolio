@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Sidebar } from "@/components/navigation/Sidebar";
 import { siteConfig } from "@/lib/seo";
@@ -45,6 +46,11 @@ export default function RootLayout({
             <div className="flex-1 flex flex-col">{children}</div>
           </div>
         </div>
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "1f926fc946c84971b817c8e415ef41d8"}'
+        />
       </body>
     </html>
   );
