@@ -91,10 +91,10 @@ export function Hero() {
         {/* Bio Paragraphs */}
         <motion.div variants={itemVariants} className="mt-6 space-y-4 text-base leading-relaxed text-[#5E5D59]">
           <p>
-            I design and build brands, interfaces, applications, and digital products for businesses and founders turning ideas into something real. I bring <span className="underline underline-offset-4 decoration-[#84837E]/60 text-[#141413]">design and development</span> together to create work that feels distinctive, intuitive, and thoughtfully made.
+            I design and build brands, interfaces, applications, and digital products for businesses and founders turning ideas into something real. I bring <span className="animated-underline text-[#141413]">design and development</span> together to create work that feels distinctive, intuitive, and thoughtfully made.
           </p>
           <p>
-            Available for <span className="underline underline-offset-4 decoration-[#84837E]/60 text-[#141413]">freelance projects</span> across branding, identity and UI design, websites, SaaS products, and custom applications.
+            Available for <span className="animated-underline text-[#141413]">freelance projects</span> across branding, identity and UI design, websites, SaaS products, and custom applications.
           </p>
         </motion.div>
 
@@ -109,7 +109,7 @@ export function Hero() {
               href={social.href}
               target={social.href.startsWith("mailto:") ? undefined : "_blank"}
               rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="text-[#5E5D59] underline underline-offset-4 decoration-[#84837E]/50 hover:text-blue-600 hover:decoration-blue-600 transition-colors"
+              className="animated-underline text-[#5E5D59]"
             >
               {social.label}
             </a>
@@ -175,9 +175,6 @@ export function Hero() {
                   <h3 className="text-base font-medium text-[#141413] tracking-tight group-hover:text-blue-600 transition-colors">
                     {service.title}
                   </h3>
-                  <span className="inline-block text-sm text-blue-600 opacity-0 -translate-x-1 transition-all duration-150 ease-out group-hover:opacity-100 group-hover:translate-x-0">
-                    →
-                  </span>
                 </div>
                 <p className="text-sm text-[#5E5D59] leading-relaxed">
                   {service.description}
@@ -214,7 +211,7 @@ export function Hero() {
           <div className="mt-5">
             <Link
               href="/contact"
-              className="inline-block text-base font-medium text-[#141413] underline underline-offset-4 decoration-[#84837E]/60 hover:text-blue-600 hover:decoration-blue-600 transition-colors"
+              className="animated-underline text-base font-medium text-[#141413]"
             >
               Start a conversation
             </Link>

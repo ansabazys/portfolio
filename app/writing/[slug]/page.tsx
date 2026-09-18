@@ -52,7 +52,6 @@ export default async function ArticleDetailPage({
             href="/writing"
             className="inline-flex items-center gap-2 text-xs text-[#84837E] hover:text-[#141413] transition-colors"
           >
-            <span>←</span>
             <span>Back to Writing</span>
           </Link>
         </div>
@@ -116,7 +115,6 @@ export default async function ArticleDetailPage({
             href="/writing"
             className="inline-flex items-center gap-2 text-xs text-[#84837E] hover:text-[#141413] transition-colors"
           >
-            <span>←</span>
             <span>All Articles</span>
           </Link>
         </div>

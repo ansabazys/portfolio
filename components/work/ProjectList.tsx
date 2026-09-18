@@ -55,9 +55,6 @@ export function ProjectList({ projects }: ProjectListProps) {
                   <span className="font-mono text-xs">
                     {project.year}
                   </span>
-                  <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-1 group-hover:text-[#141413]">
-                    →
-                  </span>
                 </div>
               </div>
             </Link>

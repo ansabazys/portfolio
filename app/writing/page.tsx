@@ -47,9 +47,8 @@ export default function WritingPage() {
                   {article.description}
                 </p>
 
-                <div className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[#141413] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                <div className="mt-4 inline-flex items-center text-xs font-medium text-[#141413] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   <span>Read article</span>
-                  <span>→</span>
                 </div>
               </Link>
             </article>

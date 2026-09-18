@@ -46,9 +46,22 @@ body {
   color: #FAFAF8;
 }
 
-:focus-visible {
+:focus-visible:not(input):not(textarea) {
   outline: 1.5px solid #141413;
   outline-offset: 3px;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Subtle editorial scrollbar */
@@ -63,4 +76,56 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #D5D3CC;
+}
+
+/* Animated Underline with Left-to-Right Blue Sweep */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1;
+  text-decoration: none;
+  background-image: linear-gradient(to right, #2563eb 50%, currentColor 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.animated-underline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  pointer-events: none;
+}
+
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: #2563eb;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.animated-underline:hover,
+.animated-underline:focus-visible {
+  background-position: 0 0;
+}
+
+.animated-underline:hover::after,
+.animated-underline:focus-visible::after {
+  transform: scaleX(1);
 }

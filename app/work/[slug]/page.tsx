@@ -55,7 +55,6 @@ export default async function ProjectDetailPage({
             href="/work"
             className="inline-flex items-center gap-2 text-xs text-[#84837E] hover:text-[#141413] transition-colors"
           >
-            <span>←</span>
             <span>Back to Work</span>
           </Link>
         </div>
@@ -110,9 +109,9 @@ export default async function ProjectDetailPage({
                 href={project.externalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#141413] font-medium hover:underline"
+                className="animated-underline text-[#141413] font-medium"
               >
-                Visit Link ↗
+                Visit Link
               </a>
             ) : (
               <span className="text-[#84837E]">Internal</span>
@@ -228,7 +227,7 @@ export default async function ProjectDetailPage({
               className="group flex flex-col text-left text-[#84837E] hover:text-[#141413] transition-colors"
             >
               <span className="text-[11px] uppercase tracking-wider">
-                ← Previous
+                Previous
               </span>
               <span className="font-medium text-[#141413] mt-0.5">
                 {prevProject.title}
@@ -244,7 +243,7 @@ export default async function ProjectDetailPage({
               className="group flex flex-col text-right text-[#84837E] hover:text-[#141413] transition-colors"
             >
               <span className="text-[11px] uppercase tracking-wider">
-                Next →
+                Next
               </span>
               <span className="font-medium text-[#141413] mt-0.5">
                 {nextProject.title}

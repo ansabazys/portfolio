@@ -63,7 +63,6 @@ export default async function ServiceDetailPage({
             href="/services"
             className="inline-flex items-center gap-2 text-xs text-[#84837E] hover:text-[#141413] transition-colors"
           >
-            <span>←</span>
             <span>Back to Services</span>
           </Link>
         </div>
@@ -195,7 +194,7 @@ export default async function ServiceDetailPage({
                   href="/work"
                   className="text-xs text-[#84837E] hover:text-[#141413] transition-colors"
                 >
-                  All projects →
+                  All projects
                 </Link>
               </div>
 
@@ -239,9 +238,6 @@ export default async function ServiceDetailPage({
                   className="group inline-flex items-center gap-1.5 text-sm font-medium text-[#141413] hover:opacity-70 transition-opacity"
                 >
                   <span>Start a conversation</span>
-                  <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
-                    →
-                  </span>
                 </Link>
               </div>
             </div>
@@ -259,7 +255,7 @@ export default async function ServiceDetailPage({
               className="group flex flex-col text-left text-[#84837E] hover:text-[#141413] transition-colors"
             >
               <span className="text-[11px] uppercase tracking-wider">
-                ← Previous Service
+                Previous Service
               </span>
               <span className="font-medium text-[#141413] text-sm mt-0.5">
                 {prevService.title}
@@ -275,7 +271,7 @@ export default async function ServiceDetailPage({
               className="group flex flex-col text-right text-[#84837E] hover:text-[#141413] transition-colors"
             >
               <span className="text-[11px] uppercase tracking-wider">
-                Next Service →
+                Next Service
               </span>
               <span className="font-medium text-[#141413] text-sm mt-0.5">
                 {nextService.title}

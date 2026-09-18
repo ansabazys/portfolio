@@ -39,11 +39,8 @@ export default function ServicesPage() {
                   </span>
                   <span className="text-xs text-[#84837E] select-none">—</span>
                   <Link href={`/services/${service.slug}`} className="group">
-                    <h2 className="text-xl font-medium tracking-tight text-[#141413] group-hover:text-blue-600 transition-colors inline-flex items-center gap-2">
-                      <span>{service.title}</span>
-                      <span className="text-sm text-blue-600 opacity-0 -translate-x-1 transition-all duration-150 ease-out group-hover:opacity-100 group-hover:translate-x-0">
-                        →
-                      </span>
+                    <h2 className="text-xl font-medium tracking-tight text-[#141413] group-hover:text-blue-600 transition-colors">
+                      {service.title}
                     </h2>
                   </Link>
                 </div>
@@ -51,7 +48,7 @@ export default function ServicesPage() {
                   href={`/services/${service.slug}`}
                   className="text-xs text-[#84837E] hover:text-[#141413] transition-colors shrink-0"
                 >
-                  View service →
+                  View service
                 </Link>
               </div>
 
@@ -99,9 +96,6 @@ export default function ServicesPage() {
                   className="group inline-flex items-center gap-1 font-medium text-[#141413] hover:text-blue-600 transition-colors"
                 >
                   <span>Explore full service scope & process</span>
-                  <span className="inline-block transition-transform duration-150 group-hover:translate-x-0.5">
-                    →
-                  </span>
                 </Link>
               </div>
             </article>
@@ -124,9 +118,6 @@ export default function ServicesPage() {
                 className="group inline-flex items-center gap-1.5 text-sm font-medium text-[#141413] hover:opacity-70 transition-opacity"
               >
                 <span>Start a conversation</span>
-                <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
-                  →
-                </span>
               </Link>
             </div>
           </div>

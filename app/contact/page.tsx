@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { KeralaTime } from "@/components/contact/KeralaTime";
 import { siteConfig, constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
@@ -42,7 +43,7 @@ export default function ContactPage() {
               </span>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="text-[#141413] hover:underline"
+                className="animated-underline text-[#141413]"
               >
                 {siteConfig.email}
               </a>
@@ -58,9 +59,9 @@ export default function ContactPage() {
                     href={siteConfig.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#141413] hover:underline"
+                    className="animated-underline text-[#141413]"
                   >
-                    GitHub ↗
+                    GitHub
                   </a>
                 </div>
                 <div>
@@ -68,21 +69,19 @@ export default function ContactPage() {
                     href={siteConfig.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#141413] hover:underline"
+                    className="animated-underline text-[#141413]"
                   >
-                    LinkedIn ↗
+                    LinkedIn
                   </a>
                 </div>
               </div>
             </div>
 
             <div>
-              <span className="block text-[11px] uppercase tracking-wider text-[#84837E] font-medium mb-1">
-                Timezone & Location
+              <span className="block text-[11px] uppercase tracking-wider text-[#84837E] font-medium mb-1.5">
+                Timezone & Local Time
               </span>
-              <p className="text-[#5E5D59]">
-                Kerala, India · IST (UTC +5:30)
-              </p>
+              <KeralaTime />
             </div>
           </div>
         </div>

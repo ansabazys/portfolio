@@ -207,10 +207,9 @@ export default function AboutPage() {
                 <div className="mt-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[#141413] hover:opacity-70 transition-opacity"
+                    className="inline-flex items-center text-xs font-medium text-[#141413] hover:opacity-70 transition-opacity"
                   >
                     <span>Get in touch</span>
-                    <span>→</span>
                   </Link>
                 </div>
               </div>
