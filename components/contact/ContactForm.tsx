@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 
 import { siteConfig } from "@/lib/seo";
+import { StatusMark } from "@/components/ui/StatusMark";
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "running" | "done">("idle");
   const [submittedData, setSubmittedData] = useState({
     name: "",
     email: "",
@@ -21,7 +22,7 @@ export function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("submitting");
+    setStatus("running");
 
     const subject = encodeURIComponent(
       formData.project
@@ -34,51 +35,25 @@ export function ContactForm() {
     const mailtoUrl = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
 
     setSubmittedData(formData);
-    setFormData({ name: "", email: "", project: "", message: "" });
 
     // Open user's default email client with pre-filled details
     window.location.href = mailtoUrl;
 
     setTimeout(() => {
-      setStatus("success");
-    }, 400);
+      setStatus("done");
+    }, 1100);
   };
 
-  if (status === "success") {
-    const backupMailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
-      `Project Inquiry from ${submittedData.name}`
-    )}&body=${encodeURIComponent(
-      `Name: ${submittedData.name}\nEmail: ${submittedData.email}\n\n${submittedData.message}`
-    )}`;
+  const handleReset = () => {
+    setStatus("idle");
+    setFormData({ name: "", email: "", project: "", message: "" });
+  };
 
-    return (
-      <div className="py-8 border-y border-[#EAE8E2] text-sm text-[#141413] space-y-3">
-        <p className="font-medium text-base">Inquiry initiated.</p>
-        <p className="text-[#5E5D59] leading-relaxed">
-          Your default email application was prompted with your project details. If it didn&apos;t open automatically, you can{" "}
-          <a
-            href={backupMailto}
-            className="animated-underline font-medium text-[#141413]"
-          >
-            send the email directly here
-          </a>
-          .
-        </p>
-        <p className="text-xs text-[#666561]">
-          I typically review inquiries and reply within 24 hours.
-        </p>
-        <div className="pt-2">
-          <button
-            type="button"
-            onClick={() => setStatus("idle")}
-            className="animated-underline text-xs text-[#666561]"
-          >
-            Send another message
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const backupMailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+    `Project Inquiry from ${submittedData.name || "visitor"}`
+  )}&body=${encodeURIComponent(
+    `Name: ${submittedData.name}\nEmail: ${submittedData.email}\n\n${submittedData.message}`
+  )}`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -158,14 +133,56 @@ export function ContactForm() {
       </div>
 
       {/* Action */}
-      <div className="pt-4">
-        <button
-          type="submit"
-          disabled={status === "submitting"}
-          className="group inline-flex items-center gap-2 text-sm font-medium text-[#141413] hover:opacity-70 disabled:opacity-50 transition-opacity"
-        >
-          <span>{status === "submitting" ? "Sending..." : "Send"}</span>
-        </button>
+      <div className="pt-4 flex flex-col gap-4">
+        <div className="flex items-center">
+          {status === "idle" ? (
+            <button
+              type="submit"
+              className="animated-underline text-base font-medium text-[#141413] transition-opacity cursor-pointer"
+            >
+              Let&apos;s talk
+            </button>
+          ) : (
+            <StatusMark
+              status={status}
+              label={status === "running" ? "Sending..." : "Success"}
+              size={18}
+              strokeWidth={2}
+              doneColor="#22c55e"
+              fontSize={14}
+              strike={false}
+              style={{ "--sm-label-o": "0.9" } as React.CSSProperties}
+            />
+          )}
+        </div>
+
+        {status === "done" && (
+          <div className="mt-2 pt-6 border-t border-[#EAE8E2] text-sm text-[#141413] space-y-3">
+            <p className="font-medium text-base text-[#141413]">Inquiry initiated.</p>
+            <p className="text-[#5E5D59] leading-relaxed">
+              Your default email application was prompted with your project details. If it didn&apos;t open automatically, you can{" "}
+              <a
+                href={backupMailto}
+                className="animated-underline font-medium text-[#141413]"
+              >
+                send the email directly here
+              </a>
+              .
+            </p>
+            <p className="text-xs text-[#666561]">
+              I typically review inquiries and reply within 24 hours.
+            </p>
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={handleReset}
+                className="animated-underline text-xs text-[#666561] cursor-pointer"
+              >
+                Send another message
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </form>
   );
