@@ -110,7 +110,7 @@ export function Hero() {
               href={social.href}
               target={social.href.startsWith("mailto:") ? undefined : "_blank"}
               rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="animated-underline text-[#5E5D59] py-1"
+              className="animated-underline text-[#5E5D59]"
             >
               {social.label}
             </a>
