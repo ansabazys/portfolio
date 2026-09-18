@@ -74,6 +74,16 @@ export default function ContactPage() {
                     LinkedIn
                   </a>
                 </div>
+                <div>
+                  <a
+                    href={siteConfig.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="animated-underline text-[#141413]"
+                  >
+                    Instagram
+                  </a>
+                </div>
               </div>
             </div>
 

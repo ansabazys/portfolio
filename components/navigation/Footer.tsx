@@ -62,6 +62,14 @@ export function Footer() {
             >
               LinkedIn
             </a>
+            <a
+              href={siteConfig.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#141413] transition-colors"
+            >
+              Instagram
+            </a>
           </div>
         </div>
       </div>

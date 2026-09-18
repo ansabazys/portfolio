@@ -12,6 +12,7 @@ export const siteConfig = {
   email: "ansabazys@gmail.com",
   github: "https://github.com/ansabazys",
   linkedin: "https://linkedin.com/in/ansabazys",
+  instagram: "https://instagram.com/ansabazys",
   url: "https://ansabazys.com",
   description:
     "Personal portfolio of Ansab Azys, Designer & Full-Stack Developer creating brand identities, thoughtful user interfaces, SaaS applications, and calm digital products.",

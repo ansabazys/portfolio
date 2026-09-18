@@ -11,6 +11,7 @@ import { FAQAccordion } from "@/components/home/FAQAccordion";
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.linkedin },
   { label: "GitHub", href: siteConfig.github },
+  { label: "Instagram", href: siteConfig.instagram },
   { label: "Email", href: `mailto:${siteConfig.email}` },
 ];
 

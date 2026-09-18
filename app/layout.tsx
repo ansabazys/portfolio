@@ -39,7 +39,7 @@ const jsonLd = {
   name: siteConfig.name,
   url: siteConfig.url,
   jobTitle: "Designer & Full-Stack Developer",
-  sameAs: [siteConfig.github, siteConfig.linkedin],
+  sameAs: [siteConfig.github, siteConfig.linkedin, siteConfig.instagram],
   knowsAbout: [
     "Product Design",
     "UI/UX Design",
