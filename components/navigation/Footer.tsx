@@ -17,31 +17,31 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link
               href="/work"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               Work
             </Link>
             <Link
               href="/services"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               Services
             </Link>
             <Link
               href="/about"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               About
             </Link>
             <Link
               href="/writing"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               Writing
             </Link>
             <Link
               href="/contact"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               Contact
             </Link>
@@ -50,7 +50,7 @@ export function Footer() {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               GitHub
             </a>
@@ -58,7 +58,7 @@ export function Footer() {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               LinkedIn
             </a>
@@ -66,7 +66,7 @@ export function Footer() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#141413] transition-colors"
+              className="hover:text-blue-600 transition-colors"
             >
               Instagram
             </a>

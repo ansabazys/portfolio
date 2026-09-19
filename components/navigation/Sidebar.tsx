@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/seo";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -94,18 +95,21 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Sticky Bar with Hamburger Button */}
+      {/* Mobile Sticky Bar with Hamburger Button & Theme Toggle */}
       <div className="md:hidden sticky top-0 z-40 pointer-events-none">
-        <div className="flex items-center justify-end w-full p-6 bg-transparent">
+        <div className="flex items-center justify-end gap-2 w-full p-6 bg-transparent">
+          <div className="pointer-events-auto">
+            <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
+          </div>
           <motion.button
             type="button"
             whileTap={{ scale: 0.92 }}
             onClick={() => setMobileMenuOpen(true)}
-            className="pointer-events-auto w-10 h-10 rounded-full bg-white/50 backdrop-blur-xl backdrop-saturate-150 border border-white/70 flex items-center justify-center text-[#141413] hover:bg-white/70 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+            className="pointer-events-auto w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
             aria-expanded={mobileMenuOpen}
             aria-label="Open navigation menu"
           >
-            <div className="relative w-6 h-6 flex items-center justify-center">
+            <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -116,6 +120,7 @@ export function Sidebar() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="text-[#141413] dark:text-[#EDEDEB]"
               >
                 <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
                 <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
@@ -137,15 +142,16 @@ export function Sidebar() {
             className="md:hidden fixed inset-0 z-50 h-[100dvh] w-full bg-[#FAFAF8] flex flex-col justify-between overflow-y-auto"
           >
             {/* Top Bar inside Fullscreen Menu */}
-            <div className="flex items-center justify-end w-full p-6 shrink-0">
+            <div className="flex items-center justify-end gap-2 w-full p-6 shrink-0">
+              <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-xl backdrop-saturate-150 border border-white/70 flex items-center justify-center text-[#141413] hover:bg-white/70 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
                 aria-label="Close navigation menu"
               >
-                <div className="relative w-6 h-6 flex items-center justify-center">
+                <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="22"
@@ -156,6 +162,7 @@ export function Sidebar() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="text-[#141413] dark:text-[#EDEDEB]"
                   >
                     <path d="M17.91 6.06Q12.46 12.46 6.04 17.8" />
                     <path d="M6.19 6.08Q11.79 12.21 18.17 17.96" />
@@ -188,7 +195,7 @@ export function Sidebar() {
                         className={`group block py-1.5 text-3xl font-medium tracking-tight transition-colors ${
                           isActive
                             ? "text-[#141413] font-semibold"
-                            : "text-[#6B6A67] hover:text-[#141413]"
+                            : "text-[#6B6A67] hover:text-blue-600"
                         }`}
                       >
                         <span className="group-hover:translate-x-1.5 transition-transform duration-200 inline-block">
@@ -279,7 +286,7 @@ export function Sidebar() {
                 className={`text-base transition-colors duration-150 ${
                   isActive
                     ? "text-[#141413] font-semibold"
-                    : "text-[#6B6A67] font-normal hover:text-[#141413]"
+                    : "text-[#6B6A67] font-normal hover:text-blue-600"
                 }`}
               >
                 {link.label}
@@ -299,6 +306,11 @@ export function Sidebar() {
         <div className="mt-6 flex items-center gap-2 text-base text-[#6B6A67]">
           <LocationIcon className="w-4 h-4 shrink-0 text-[#84837E]" />
           <span>{siteConfig.location}</span>
+        </div>
+
+        {/* Theme Toggle */}
+        <div className="mt-6 flex items-center">
+          <ThemeToggle className="w-auto h-auto p-0 justify-start" />
         </div>
       </aside>
     </>

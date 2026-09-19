@@ -1,14 +1,29 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --bg: #FAFAF8;
   --bg-subtle: #F3F2EE;
   --text-primary: #141413;
   --text-secondary: #5E5D59;
-  --text-muted: #666561;
+  --text-muted: #84837E;
   --border-subtle: #EAE8E2;
   --border-strong: #D5D3CC;
   --accent: #21201D;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #121211;
+  --bg-subtle: #1B1A19;
+  --text-primary: #EDEDEB;
+  --text-secondary: #A3A29D;
+  --text-muted: #8E8D88;
+  --border-subtle: #242321;
+  --border-strong: #383734;
+  --accent: #F5F5F3;
+  color-scheme: dark;
 }
 
 @theme {
@@ -24,30 +39,32 @@
 }
 
 html {
-  background-color: #FAFAF8;
-  color: #141413;
+  background-color: var(--bg);
+  color: var(--text-primary);
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   scroll-behavior: smooth;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body {
-  background-color: #FAFAF8;
-  color: #141413;
+  background-color: var(--bg);
+  color: var(--text-primary);
   min-height: 100vh;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 ::selection {
-  background-color: #141413;
-  color: #FAFAF8;
+  background-color: var(--text-primary);
+  color: var(--bg);
 }
 
 :focus-visible:not(input):not(textarea) {
-  outline: 1.5px solid #141413;
+  outline: 1.5px solid var(--text-primary);
   outline-offset: 3px;
 }
 
@@ -69,13 +86,13 @@ textarea:focus-visible {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAFAF8;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #EAE8E2;
+  background: var(--border-subtle);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D5D3CC;
+  background: var(--border-strong);
 }
 
 /* Animated Underline with Left-to-Right Blue Sweep */
@@ -129,3 +146,68 @@ textarea:focus-visible {
 .animated-underline:focus-visible::after {
   transform: scaleX(1);
 }
+
+/* Dark mode utility class adaptations */
+.dark .text-\[\#141413\] {
+  color: var(--text-primary);
+}
+
+.dark .text-\[\#21201D\] {
+  color: var(--accent);
+}
+
+.dark .text-\[\#5E5D59\] {
+  color: var(--text-secondary);
+}
+
+.dark .text-\[\#84837E\],
+.dark .text-\[\#666561\],
+.dark .text-\[\#6B6A67\] {
+  color: var(--text-muted);
+}
+
+.dark .placeholder-\[\#B5B3AC\]::placeholder {
+  color: #5A5955;
+}
+
+.dark .bg-\[\#FAFAF8\] {
+  background-color: var(--bg);
+}
+
+.dark .bg-\[\#F7F6F2\] {
+  background-color: #171615;
+}
+
+.dark .bg-\[\#F3F2EE\] {
+  background-color: var(--bg-subtle);
+}
+
+.dark .border-\[\#EAE8E2\],
+.dark .border-\[\#F0EFEA\] {
+  border-color: var(--border-subtle);
+}
+
+.dark .border-\[\#D5D3CC\] {
+  border-color: var(--border-strong);
+}
+
+.dark .bg-\[\#D5D3CC\] {
+  background-color: var(--border-strong);
+}
+
+.dark .divide-\[\#EAE8E2\] > :not(:last-child),
+.dark .divide-\[\#EAE8E2\] > :not([hidden]) ~ :not([hidden]),
+.dark .divide-\[\#EAE8E2\] > * {
+  border-color: var(--border-subtle) !important;
+}
+
+/* Ensure blue hover colors take precedence in dark mode */
+.dark .hover\:text-blue-600:hover,
+.dark .group:hover .group-hover\:text-blue-600,
+.dark .group-hover\:text-blue-600:is(:where(.group):hover *),
+.dark a:hover .group-hover\:text-blue-600,
+.dark [class*="hover:text-blue-600"]:hover,
+.dark .group:hover [class*="group-hover:text-blue-600"] {
+  color: #3b82f6 !important;
+}
+

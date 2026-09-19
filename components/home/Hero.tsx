@@ -125,7 +125,7 @@ export function Hero() {
             </h2>
             <Link
               href="/work"
-              className="text-sm text-[#84837E] hover:text-[#141413] transition-colors"
+              className="text-sm text-[#84837E] hover:text-blue-600 transition-colors"
             >
               View all
             </Link>
