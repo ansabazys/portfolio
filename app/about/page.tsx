@@ -27,7 +27,7 @@ export default function AboutPage() {
         {/* Content Sections */}
         <div className="space-y-16 sm:space-y-20 text-base leading-relaxed text-[#5E5D59]">
           {/* Who I am */}
-          <section className="border-t border-[#EAE8E2] pt-8 sm:pt-10">
+          <section>
             <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-4">
               Who I Am
             </h2>

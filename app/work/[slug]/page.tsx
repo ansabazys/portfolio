@@ -228,13 +228,13 @@ export default async function ProjectDetailPage({
             <h2 className="text-base font-medium text-[#141413] tracking-tight">
               Have a similar project in mind?
             </h2>
-            <p className="mt-2 text-sm text-[#5E5D59] leading-relaxed">
+            <p className="mt-3 text-base text-[#5E5D59] leading-relaxed">
               Available for select freelance engagements, UI design, and end-to-end full-stack development.
             </p>
-            <div className="mt-4">
+            <div className="mt-5">
               <Link
                 href="/contact"
-                className="animated-underline text-sm font-medium text-[#141413]"
+                className="animated-underline text-base font-medium text-[#141413]"
               >
                 Start a conversation
               </Link>

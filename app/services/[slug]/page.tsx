@@ -225,19 +225,19 @@ export default async function ServiceDetailPage({
           {/* Call to Action */}
           <section className="pt-8 border-t border-[#EAE8E2]">
             <div className="max-w-md">
-              <h3 className="text-lg font-medium text-[#141413] tracking-tight">
+              <h3 className="text-base font-medium text-[#141413] tracking-tight">
                 Interested in this service?
               </h3>
-              <p className="mt-2 text-sm text-[#5E5D59] leading-relaxed">
+              <p className="mt-3 text-base text-[#5E5D59] leading-relaxed">
                 Tell me about your vision, goals, and timeline. I will follow up
                 within 24 hours with scoping recommendations.
               </p>
               <div className="mt-5">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-[#141413] hover:opacity-70 transition-opacity"
+                  className="animated-underline text-base font-medium text-[#141413]"
                 >
-                  <span>Start a conversation</span>
+                  Start a conversation
                 </Link>
               </div>
             </div>

@@ -76,7 +76,7 @@ export default async function ArticleDetailPage({
         </header>
 
         {/* Article Body */}
-        <article className="border-t border-[#EAE8E2] pt-10 sm:pt-14 space-y-10 sm:space-y-12 text-base leading-relaxed text-[#5E5D59]">
+        <article className="space-y-10 sm:space-y-12 text-base leading-relaxed text-[#5E5D59]">
           {article.content.map((section, idx) => (
             <section key={idx} className="space-y-4">
               {section.heading && (

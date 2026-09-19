@@ -26,7 +26,7 @@ export default function WritingPage() {
         </header>
 
         {/* Article Listing */}
-        <div className="divide-y divide-[#EAE8E2] border-y border-[#EAE8E2]">
+        <div className="divide-y divide-[#EAE8E2]">
           {articles.map((article) => (
             <article key={article.slug}>
               <Link

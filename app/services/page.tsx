@@ -30,7 +30,7 @@ export default function ServicesPage() {
           {services.map((service) => (
             <article
               key={service.id}
-              className="border-t border-[#EAE8E2] pt-8 sm:pt-10"
+              className="border-t border-[#EAE8E2] first:border-t-0 first:pt-0 pt-8 sm:pt-10"
             >
               <div className="flex items-baseline justify-between gap-4 mb-4">
                 <div className="flex items-baseline gap-3">
@@ -105,19 +105,19 @@ export default function ServicesPage() {
         {/* Bottom CTA */}
         <section className="mt-24 pt-12 border-t border-[#EAE8E2]">
           <div className="max-w-md">
-            <h3 className="text-lg font-medium text-[#141413] tracking-tight">
+            <h3 className="text-base font-medium text-[#141413] tracking-tight">
               Have a project in mind?
             </h3>
-            <p className="mt-2 text-sm text-[#5E5D59] leading-relaxed">
+            <p className="mt-3 text-base text-[#5E5D59] leading-relaxed">
               Whether you are scoping a greenfield product or refactoring an existing system,
               I am available for select collaborations.
             </p>
-            <div className="mt-6">
+            <div className="mt-5">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-1.5 text-sm font-medium text-[#141413] hover:opacity-70 transition-opacity"
+                className="animated-underline text-base font-medium text-[#141413]"
               >
-                <span>Start a conversation</span>
+                Start a conversation
               </Link>
             </div>
           </div>

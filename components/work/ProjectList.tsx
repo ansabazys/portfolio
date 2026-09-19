@@ -14,7 +14,7 @@ export function ProjectList({ projects }: ProjectListProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="divide-y divide-[#EAE8E2] border-y border-[#EAE8E2]">
+    <div className="divide-y divide-[#EAE8E2]">
       {projects.map((project, index) => {
         const isHovered = hoveredSlug === project.slug;
         const isAnyHovered = hoveredSlug !== null;
@@ -42,7 +42,7 @@ export function ProjectList({ projects }: ProjectListProps) {
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1.5 min-w-0">
                   <div className="flex items-center gap-3">
-                    <h3 className="text-lg font-medium text-[#141413] tracking-tight transition-all duration-200 ease-out group-hover:translate-x-1 group-hover:text-blue-600">
+                    <h3 className="text-lg font-medium text-[#141413] tracking-tight transition-colors duration-200 group-hover:text-blue-600">
                       {project.title}
                     </h3>
                   </div>
