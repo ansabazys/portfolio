@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/seo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -97,45 +98,59 @@ export function Sidebar() {
     <>
       {/* Mobile Sticky Bar with Hamburger Button & Theme Toggle */}
       <div className="md:hidden sticky top-0 z-40 pointer-events-none">
-        <div className="flex items-center justify-end gap-2 w-full p-6 bg-transparent">
+        <div className="flex items-center justify-between gap-2 w-full p-6 bg-transparent">
+          {/* Logo on Left */}
           <motion.div whileTap={{ scale: 0.94 }} className="pointer-events-auto">
             <Link
-              href="/contact"
-              className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
+              href="/"
+              className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center hover:bg-white/80 dark:hover:bg-[#121211]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+              aria-label="Ansab Azys - Home"
             >
-              Let&apos;s Talk
+              <Logo className="h-5 w-5" size={20} />
             </Link>
           </motion.div>
-          <div className="pointer-events-auto">
-            <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
-          </div>
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.92 }}
-            onClick={() => setMobileMenuOpen(true)}
-            className="pointer-events-auto w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
-            aria-expanded={mobileMenuOpen}
-            aria-label="Open navigation menu"
-          >
-            <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-[#141413] dark:text-[#EDEDEB]"
+
+          {/* Right Controls */}
+          <div className="flex items-center gap-2">
+            <motion.div whileTap={{ scale: 0.94 }} className="pointer-events-auto">
+              <Link
+                href="/contact"
+                className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
               >
-                <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
-                <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
-                <path d="M4.18 18.82Q12 18.75 20.03 19.02" />
-              </svg>
+                Let&apos;s Talk
+              </Link>
+            </motion.div>
+            <div className="pointer-events-auto">
+              <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
             </div>
-          </motion.button>
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.92 }}
+              onClick={() => setMobileMenuOpen(true)}
+              className="pointer-events-auto w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Open navigation menu"
+            >
+              <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-[#141413] dark:text-[#EDEDEB]"
+                >
+                  <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
+                  <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
+                  <path d="M4.18 18.82Q12 18.75 20.03 19.02" />
+                </svg>
+              </div>
+            </motion.button>
+          </div>
         </div>
       </div>
 
@@ -150,42 +165,57 @@ export function Sidebar() {
             className="md:hidden fixed inset-0 z-50 h-[100dvh] w-full bg-[#FAFAF8] flex flex-col justify-between overflow-y-auto"
           >
             {/* Top Bar inside Fullscreen Menu */}
-            <div className="flex items-center justify-end gap-2 w-full p-6 shrink-0">
+            <div className="flex items-center justify-between gap-2 w-full p-6 shrink-0">
+              {/* Logo on Left */}
               <motion.div whileTap={{ scale: 0.94 }}>
                 <Link
-                  href="/contact"
+                  href="/"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
+                  className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center hover:bg-white/80 dark:hover:bg-[#121211]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+                  aria-label="Ansab Azys - Home"
                 >
-                  Let&apos;s Talk
+                  <Logo className="h-5 w-5" size={20} />
                 </Link>
               </motion.div>
-              <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
-              <motion.button
-                type="button"
-                whileTap={{ scale: 0.92 }}
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
-                aria-label="Close navigation menu"
-              >
-                <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-[#141413] dark:text-[#EDEDEB]"
+
+              {/* Right Controls */}
+              <div className="flex items-center gap-2">
+                <motion.div whileTap={{ scale: 0.94 }}>
+                  <Link
+                    href="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
                   >
-                    <path d="M17.91 6.06Q12.46 12.46 6.04 17.8" />
-                    <path d="M6.19 6.08Q11.79 12.21 18.17 17.96" />
-                  </svg>
-                </div>
-              </motion.button>
+                    Let&apos;s Talk
+                  </Link>
+                </motion.div>
+                <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
+                <motion.button
+                  type="button"
+                  whileTap={{ scale: 0.92 }}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+                  aria-label="Close navigation menu"
+                >
+                  <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-[#141413] dark:text-[#EDEDEB]"
+                    >
+                      <path d="M17.91 6.06Q12.46 12.46 6.04 17.8" />
+                      <path d="M6.19 6.08Q11.79 12.21 18.17 17.96" />
+                    </svg>
+                  </div>
+                </motion.button>
+              </div>
             </div>
 
             {/* Navigation Links (Center / Main Viewport Section) */}
