@@ -81,6 +81,22 @@ textarea:focus-visible {
   box-shadow: none !important;
 }
 
+/* Remove browser autofill light blue background and preserve theme colors */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg) inset !important;
+  box-shadow: 0 0 0 1000px var(--bg) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--text-primary) !important;
+  transition: background-color 50000s ease-in-out 0s, -webkit-box-shadow 0.2s ease, box-shadow 0.2s ease;
+}
+
 /* Subtle editorial scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

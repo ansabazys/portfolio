@@ -201,7 +201,7 @@ export function Hero() {
           className="mt-10 pt-2"
           aria-label="Contact and Inquiry"
         >
-          <h2 className="text-base font-medium tracking-tight text-[#141413]">
+          <h2 className="text-base font-medium text-[#141413]">
             Have an idea worth building?
           </h2>
 
