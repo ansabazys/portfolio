@@ -98,6 +98,14 @@ export function Sidebar() {
       {/* Mobile Sticky Bar with Hamburger Button & Theme Toggle */}
       <div className="md:hidden sticky top-0 z-40 pointer-events-none">
         <div className="flex items-center justify-end gap-2 w-full p-6 bg-transparent">
+          <motion.div whileTap={{ scale: 0.94 }} className="pointer-events-auto">
+            <Link
+              href="/contact"
+              className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
+            >
+              Let&apos;s Talk
+            </Link>
+          </motion.div>
           <div className="pointer-events-auto">
             <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
           </div>
@@ -143,12 +151,21 @@ export function Sidebar() {
           >
             {/* Top Bar inside Fullscreen Menu */}
             <div className="flex items-center justify-end gap-2 w-full p-6 shrink-0">
+              <motion.div whileTap={{ scale: 0.94 }}>
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
+                >
+                  Let&apos;s Talk
+                </Link>
+              </motion.div>
               <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
                 aria-label="Close navigation menu"
               >
                 <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
