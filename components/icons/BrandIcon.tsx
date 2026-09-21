@@ -22,7 +22,7 @@ export function BrandIcon({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={cn("text-green-600", className)}
+      className={cn("text-emerald-600", className)}
       aria-hidden="true"
       {...props}
     >

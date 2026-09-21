@@ -1,5 +1,6 @@
 import React from "react";
 import { IconProps } from "./BrandIcon";
+import { cn } from "@/lib/utils";
 
 export function DesignIcon({
   size = 17,
@@ -17,7 +18,7 @@ export function DesignIcon({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={cn("text-indigo-600", className)}
       aria-hidden="true"
       {...props}
     >

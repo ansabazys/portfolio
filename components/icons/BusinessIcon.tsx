@@ -1,5 +1,6 @@
 import React from "react";
 import { IconProps } from "./BrandIcon";
+import { cn } from "@/lib/utils";
 
 export function BusinessIcon({
   size = 17,
@@ -17,7 +18,7 @@ export function BusinessIcon({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={cn("text-blue-600", className)}
       aria-hidden="true"
       {...props}
     >

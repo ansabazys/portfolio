@@ -1,5 +1,6 @@
 import React from "react";
 import { IconProps } from "./BrandIcon";
+import { cn } from "@/lib/utils";
 
 export function GlobeIcon({
   size = 17,
@@ -17,7 +18,7 @@ export function GlobeIcon({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={cn("text-cyan-600", className)}
       aria-hidden="true"
       {...props}
     >
