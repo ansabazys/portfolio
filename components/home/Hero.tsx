@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/seo";
 import { projects } from "@/lib/projects";
 import { FAQAccordion } from "@/components/home/FAQAccordion";
+import { BrandIcon, BusinessIcon, CreateIcon, DesignIcon, FreelanceIcon, GlobeIcon, TogetherIcon } from "@/components/icons";
 
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.linkedin },
@@ -92,10 +93,61 @@ export function Hero() {
         {/* Bio Paragraphs */}
         <motion.div variants={itemVariants} className="mt-6 space-y-4 text-base leading-relaxed text-[#5E5D59]">
           <p>
-            I design and build brands, interfaces, applications, and digital products for businesses and founders turning ideas into something real. I bring <span className="animated-underline text-[#141413]">design and development</span> together to create work that feels distinctive, intuitive, and thoughtfully made.
+            I design and build{" "}
+            <span className="whitespace-nowrap">
+              brands
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <BrandIcon size={17} />
+              </span>
+              ,
+            </span>{" "}
+            interfaces, applications, and digital products for{" "}
+            <span className="whitespace-nowrap">
+              businesses
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <BusinessIcon size={17} />
+              </span>
+            </span>{" "}
+            and founders turning ideas into something real. I bring{" "}
+            <span className="whitespace-nowrap">
+              <span className="animated-underline text-[#141413]">design and development</span>
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <DesignIcon size={17} />
+              </span>
+            </span>{" "}
+            together to{" "}
+            <span className="whitespace-nowrap">
+              create
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <CreateIcon size={17} />
+              </span>
+            </span>{" "}
+            work that feels distinctive, intuitive, and thoughtfully{" "}
+            <span className="whitespace-nowrap">
+              made
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <TogetherIcon size={17} />
+              </span>
+              .
+            </span>
           </p>
           <p>
-            Available for <span className="animated-underline text-[#141413]">freelance projects</span> across branding, identity and UI design, websites, SaaS products, and custom applications.
+            Available for{" "}
+            <span className="whitespace-nowrap">
+              <span className="animated-underline text-[#141413]">freelance projects</span>
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <FreelanceIcon size={17} />
+              </span>
+            </span>{" "}
+            across branding, identity and UI design,{" "}
+            <span className="whitespace-nowrap">
+              websites
+              <span className="inline-flex items-center align-[-0.15em] ml-[5px]">
+                <GlobeIcon size={17} />
+              </span>
+              ,
+            </span>{" "}
+            SaaS products, and custom applications.
           </p>
         </motion.div>
 
