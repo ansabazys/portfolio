@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import { siteConfig } from "@/lib/seo";
 import { StatusMark } from "@/components/ui/StatusMark";
+import { ArrowUpRightIcon } from "@/components/icons";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "running" | "done">("idle");
@@ -61,7 +62,7 @@ export function ContactForm() {
       <div className="space-y-1.5 group">
         <label
           htmlFor="name"
-          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 font-medium transition-colors"
+          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 dark:group-focus-within:text-blue-500 font-medium transition-colors"
         >
           Name
         </label>
@@ -74,7 +75,7 @@ export function ContactForm() {
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           placeholder="Your name"
-          className="w-full bg-transparent border-b border-[#EAE8E2] py-2 text-sm text-[#141413] placeholder-[#B5B3AC] focus:border-blue-600 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none"
+          className="w-full bg-transparent border-b border-[#EAE8E2] dark:border-[#242321] py-2 text-sm text-[#141413] dark:text-[#EDEDEB] placeholder-[#B5B3AC] focus:border-blue-600 dark:focus:border-blue-500 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none"
         />
       </div>
 
@@ -82,7 +83,7 @@ export function ContactForm() {
       <div className="space-y-1.5 group">
         <label
           htmlFor="email"
-          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 font-medium transition-colors"
+          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 dark:group-focus-within:text-blue-500 font-medium transition-colors"
         >
           Email
         </label>
@@ -95,7 +96,7 @@ export function ContactForm() {
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           placeholder="name@domain.com"
-          className="w-full bg-transparent border-b border-[#EAE8E2] py-2 text-sm text-[#141413] placeholder-[#B5B3AC] focus:border-blue-600 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none"
+          className="w-full bg-transparent border-b border-[#EAE8E2] dark:border-[#242321] py-2 text-sm text-[#141413] dark:text-[#EDEDEB] placeholder-[#B5B3AC] focus:border-blue-600 dark:focus:border-blue-500 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none"
         />
       </div>
 
@@ -103,7 +104,7 @@ export function ContactForm() {
       <div className="space-y-1.5 group">
         <label
           htmlFor="project"
-          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 font-medium transition-colors"
+          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 dark:group-focus-within:text-blue-500 font-medium transition-colors"
         >
           Project
         </label>
@@ -113,7 +114,7 @@ export function ContactForm() {
           value={formData.project}
           onChange={(e) => setFormData({ ...formData, project: e.target.value })}
           placeholder="SaaS platform, E-commerce, MVP, or consulting"
-          className="w-full bg-transparent border-b border-[#EAE8E2] py-2 text-sm text-[#141413] placeholder-[#B5B3AC] focus:border-blue-600 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none"
+          className="w-full bg-transparent border-b border-[#EAE8E2] dark:border-[#242321] py-2 text-sm text-[#141413] dark:text-[#EDEDEB] placeholder-[#B5B3AC] focus:border-blue-600 dark:focus:border-blue-500 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none"
         />
       </div>
 
@@ -121,7 +122,7 @@ export function ContactForm() {
       <div className="space-y-1.5 group">
         <label
           htmlFor="message"
-          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 font-medium transition-colors"
+          className="block text-xs uppercase tracking-wider text-[#84837E] group-focus-within:text-blue-600 dark:group-focus-within:text-blue-500 font-medium transition-colors"
         >
           Message
         </label>
@@ -132,19 +133,23 @@ export function ContactForm() {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Brief summary of your timeline, objectives, or current challenges"
-          className="w-full bg-transparent border-b border-[#EAE8E2] py-2 text-sm text-[#141413] placeholder-[#B5B3AC] focus:border-blue-600 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none resize-none"
+          className="w-full bg-transparent border-b border-[#EAE8E2] dark:border-[#242321] py-2 text-sm text-[#141413] dark:text-[#EDEDEB] placeholder-[#B5B3AC] focus:border-blue-600 dark:focus:border-blue-500 outline-none focus:outline-none focus-visible:outline-none transition-colors rounded-none resize-none"
         />
       </div>
 
       {/* Action */}
       <div className="pt-4 flex flex-col gap-4">
-        <div className="flex items-center">
+        <div className="flex items-center min-h-[40px]">
           {status === "idle" ? (
             <button
               type="submit"
-              className="animated-underline text-base font-medium text-[#141413] transition-opacity cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 px-3.5 py-2.5 text-sm font-medium text-[#141413] dark:text-[#EDEDEB] bg-transparent border border-[#141413] dark:border-[#EDEDEB] rounded-none hover:bg-[#141413] hover:text-[#FAFAF8] dark:hover:bg-[#EDEDEB] dark:hover:text-[#121211] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#141413] dark:focus-visible:ring-[#EDEDEB] transition-all cursor-pointer"
             >
-              Let&apos;s talk
+              <span>Let&apos;s talk</span>
+              <ArrowUpRightIcon
+                size={17}
+                className="transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </button>
           ) : (
             <StatusMark

@@ -207,8 +207,8 @@ textarea:-webkit-autofill:active {
   background-color: var(--bg-subtle);
 }
 
-.dark .border-\[\#EAE8E2\],
-.dark .border-\[\#F0EFEA\] {
+.dark .border-\[\#EAE8E2\]:not(:focus),
+.dark .border-\[\#F0EFEA\]:not(:focus) {
   border-color: var(--border-subtle);
 }
 
@@ -226,13 +226,22 @@ textarea:-webkit-autofill:active {
   border-color: var(--border-subtle) !important;
 }
 
-/* Ensure blue hover colors take precedence in dark mode */
+/* Ensure blue hover and focus active colors take precedence in dark mode */
 .dark .hover\:text-blue-600:hover,
 .dark .group:hover .group-hover\:text-blue-600,
 .dark .group-hover\:text-blue-600:is(:where(.group):hover *),
 .dark a:hover .group-hover\:text-blue-600,
 .dark [class*="hover:text-blue-600"]:hover,
-.dark .group:hover [class*="group-hover:text-blue-600"] {
+.dark .group:hover [class*="group-hover:text-blue-600"],
+.dark .group-focus-within\:text-blue-600:is(:where(.group):focus-within *),
+.dark .group:focus-within .group-focus-within\:text-blue-600,
+.dark [class*="group-focus-within:text-blue"]:is(:where(.group):focus-within *),
+.dark .group:focus-within [class*="group-focus-within:text-blue"] {
   color: #3b82f6 !important;
+}
+
+.dark .focus\:border-blue-600:focus,
+.dark [class*="focus:border-blue"]:focus {
+  border-color: #3b82f6 !important;
 }
 

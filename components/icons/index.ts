@@ -7,3 +7,4 @@ export * from "./GlobeIcon";
 export * from "./CreateIcon";
 export * from "./BotIcon";
 export * from "./TrashIcon";
+export * from "./ArrowUpRightIcon";
