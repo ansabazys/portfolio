@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/seo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/Logo";
+import { BotIcon, TrashIcon } from "@/components/icons";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -66,6 +67,7 @@ const itemVariants = {
 
 export function Sidebar() {
   const pathname = usePathname();
+  const isChat = pathname === "/chat" || pathname?.startsWith("/chat/");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Lock body scroll when mobile menu is open
@@ -123,6 +125,22 @@ export function Sidebar() {
             <div className="pointer-events-auto">
               <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
             </div>
+            {isChat && (
+              <motion.button
+                type="button"
+                whileTap={{ scale: 0.92 }}
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent("clear-chat"));
+                }}
+                className="pointer-events-auto w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-red-500 dark:text-red-400 hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-red-600 dark:hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all cursor-pointer"
+                aria-label="Clear chat"
+                title="Clear chat"
+              >
+                <div className="relative w-6 h-6 flex items-center justify-center text-red-500 dark:text-red-400">
+                  <TrashIcon size={20} />
+                </div>
+              </motion.button>
+            )}
             <motion.button
               type="button"
               whileTap={{ scale: 0.92 }}
@@ -310,6 +328,30 @@ export function Sidebar() {
         )}
       </AnimatePresence>
 
+      {/* Mobile Floating Bottom Right Bot Icon */}
+      <AnimatePresence>
+        {!mobileMenuOpen && !isChat && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed bottom-6 right-6 z-40"
+          >
+            <Link href="/chat" aria-label="Open AI Chat Assistant">
+              <motion.div
+                whileTap={{ scale: 0.92 }}
+                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+              >
+                <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
+                  <BotIcon size={20} />
+                </div>
+              </motion.div>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Desktop Left Sidebar (Vertical Navigation) */}
       <aside
         aria-label="Sidebar Navigation"
@@ -355,11 +397,55 @@ export function Sidebar() {
           <span>{siteConfig.location}</span>
         </div>
 
-        {/* Theme Toggle */}
-        <div className="mt-6 flex items-center">
+        {/* Theme Toggle & Bot Icon */}
+        <div className="mt-6 flex items-center gap-3">
           <ThemeToggle className="w-auto h-auto p-0 justify-start" />
+          <Link
+            href="/chat"
+            aria-label="Open AI Chat Assistant"
+            title="AI Chat Assistant"
+            className="group relative flex items-center justify-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 rounded"
+          >
+            <motion.div
+              whileTap={{ scale: 0.88 }}
+              whileHover={{
+                scale: 1.18,
+                transition: { type: "spring", stiffness: 350, damping: 14 },
+              }}
+              className="flex items-center justify-center origin-center cursor-pointer"
+            >
+              <BotIcon
+                size={18}
+                className={`transition-colors ${
+                  isChat
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-[#141413] dark:text-[#EDEDEB] group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                }`}
+              />
+            </motion.div>
+          </Link>
         </div>
       </aside>
+
+      {/* Desktop Fixed Clear Chat Button */}
+      {isChat && (
+        <div className="hidden md:block fixed top-6 right-8 lg:top-8 lg:right-12 z-40">
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.92 }}
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent("clear-chat"));
+            }}
+            className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-red-500 dark:text-red-400 hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-red-600 dark:hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all cursor-pointer"
+            aria-label="Clear chat"
+            title="Clear chat"
+          >
+            <div className="relative w-6 h-6 flex items-center justify-center text-red-500 dark:text-red-400">
+              <TrashIcon size={20} />
+            </div>
+          </motion.button>
+        </div>
+      )}
     </>
   );
 }

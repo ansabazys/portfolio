@@ -5,3 +5,5 @@ export * from "./TogetherIcon";
 export * from "./BusinessIcon";
 export * from "./GlobeIcon";
 export * from "./CreateIcon";
+export * from "./BotIcon";
+export * from "./TrashIcon";

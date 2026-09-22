@@ -111,6 +111,15 @@ textarea:-webkit-autofill:active {
   background: var(--border-strong);
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Animated Underline with Left-to-Right Blue Sweep */
 .animated-underline {
   position: relative;

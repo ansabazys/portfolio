@@ -1,8 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/seo";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  if (pathname === "/chat" || pathname?.startsWith("/chat/")) {
+    return null;
+  }
+
   return (
     <footer className="mt-auto py-10 sm:py-12">
       <div className="mx-auto w-full max-w-3xl px-6 sm:px-8 md:px-12">
