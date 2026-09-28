@@ -9,13 +9,6 @@ import { projects } from "@/lib/projects";
 import { FAQAccordion } from "@/components/home/FAQAccordion";
 import { BrandIcon, BusinessIcon, CreateIcon, DesignIcon, FreelanceIcon, GlobeIcon, TogetherIcon } from "@/components/icons";
 
-const socialLinks = [
-  { label: "LinkedIn", href: siteConfig.linkedin },
-  { label: "Let’s collaborate on GitHub", href: siteConfig.github },
-  { label: "Instagram", href: siteConfig.instagram },
-  { label: "Email", href: `mailto:${siteConfig.email}` },
-];
-
 const projectSummaries: Record<string, string> = {
   traqory: "Privacy-first analytics for fast, actionable product insights.",
   healix: "Personalized nutrition subscriptions built for everyday wellness.",
@@ -206,24 +199,34 @@ export function Hero() {
             </span>{" "}
             SaaS products, and custom applications.
           </p>
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"
-        >
-          {socialLinks.map((social) => (
+          <p>
+            Explore my work on{" "}
             <a
-              key={social.label}
-              href={social.href}
-              target={social.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="animated-underline text-[#5E5D59]"
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="animated-underline text-[var(--text-primary)]"
             >
-              {social.label}
+              GitHub
             </a>
-          ))}
+            , see the creative things I share on{" "}
+            <a
+              href={siteConfig.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="animated-underline text-[var(--text-primary)]"
+            >
+              Instagram
+            </a>
+            , or{" "}
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="animated-underline text-[var(--text-primary)]"
+            >
+              email me
+            </a>{" "}
+            to get in touch.
+          </p>
         </motion.div>
 
         {/* Projects */}
