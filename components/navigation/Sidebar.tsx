@@ -11,10 +11,9 @@ import { BotIcon, TrashIcon } from "@/components/icons";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/writing", label: "Writing" },
+  { href: "/blog", label: "Blog" },
+  { href: "/thoughts", label: "Thoughts" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -259,7 +258,7 @@ export function Sidebar() {
                         onClick={() => setMobileMenuOpen(false)}
                         className={`group block py-1.5 text-3xl font-medium tracking-tight transition-colors ${
                           isActive
-                            ? "text-[#141413] font-semibold"
+                            ? "text-[#141413] font-semibold underline underline-offset-4"
                             : "text-[#6B6A67] hover:text-blue-600"
                         }`}
                       >
@@ -355,7 +354,7 @@ export function Sidebar() {
       {/* Desktop Left Sidebar (Vertical Navigation) */}
       <aside
         aria-label="Sidebar Navigation"
-        className="hidden md:flex md:w-64 md:shrink-0 md:sticky md:top-0 md:h-screen md:flex-col pt-20 sm:pt-28 md:pt-32 pl-6 sm:pl-8 pr-2 select-none"
+        className="hidden md:flex md:w-48 md:shrink-0 md:sticky md:top-0 md:h-screen md:flex-col pt-12 sm:pt-20 md:pt-24 pl-6 sm:pl-8 pr-2 select-none"
       >
         {/* Navigation Links - Stacked vertically (one below one) */}
         <nav
@@ -374,7 +373,7 @@ export function Sidebar() {
                 href={link.href}
                 className={`text-base transition-colors duration-150 ${
                   isActive
-                    ? "text-[#141413] font-semibold"
+                    ? "text-[#141413] font-semibold underline underline-offset-4"
                     : "text-[#6B6A67] font-normal hover:text-blue-600"
                 }`}
               >
@@ -383,19 +382,6 @@ export function Sidebar() {
             );
           })}
         </nav>
-
-        {/* Current Mood Section */}
-        <div className="mt-8 w-full">
-          <p className="text-base text-[#6B6A67] leading-snug whitespace-pre-line w-full">
-            {siteConfig.currentMood}
-          </p>
-        </div>
-
-        {/* Location Section */}
-        <div className="mt-6 flex items-center gap-2 text-base text-[#6B6A67]">
-          <LocationIcon className="w-4 h-4 shrink-0 text-[#84837E]" />
-          <span>{siteConfig.location}</span>
-        </div>
 
         {/* Theme Toggle & Bot Icon */}
         <div className="mt-6 flex items-center gap-3">

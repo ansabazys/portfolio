@@ -25,28 +25,10 @@ export function Footer() {
           {/* Quick Links & Socials */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link
-              href="/work"
-              className="hover:text-blue-600 transition-colors"
-            >
-              Work
-            </Link>
-            <Link
-              href="/services"
-              className="hover:text-blue-600 transition-colors"
-            >
-              Services
-            </Link>
-            <Link
               href="/about"
               className="hover:text-blue-600 transition-colors"
             >
               About
-            </Link>
-            <Link
-              href="/writing"
-              className="hover:text-blue-600 transition-colors"
-            >
-              Writing
             </Link>
             <Link
               href="/contact"

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { KineticPhotoStack } from "@/components/ui/KineticPhotoStack";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
@@ -11,21 +12,25 @@ export const metadata = constructMetadata({
 
 export default function AboutPage() {
   return (
-    <main className="py-20 sm:py-28 md:py-32">
+    <main className="pt-12 sm:pt-20 md:pt-24 pb-20 sm:pb-28 md:pb-32">
       <Container size="md">
-        {/* Header */}
-        <header className="mb-14 sm:mb-20">
+        <div className="max-w-md">
+          {/* Header */}
+          <header className="mb-14 sm:mb-20">
           <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
             About
           </h1>
-          <p className="mt-4 text-2xl font-medium tracking-tight text-[#141413] leading-snug max-w-xl">
+          <div className="my-6 sm:my-8">
+            <KineticPhotoStack />
+          </div>
+          <p className="text-2xl font-medium tracking-tight text-[#141413] leading-snug max-w-xl">
             Ansab Azys is a product designer and full-stack engineer focused on building
             resilient web architectures and calm, typography-driven digital products.
           </p>
-        </header>
+          </header>
 
-        {/* Content Sections */}
-        <div className="space-y-16 sm:space-y-20 text-base leading-relaxed text-[#5E5D59]">
+          {/* Content Sections */}
+          <div className="space-y-16 sm:space-y-20 text-base leading-relaxed text-[#5E5D59]">
           {/* Who I am */}
           <section>
             <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium mb-4">
@@ -215,6 +220,7 @@ export default function AboutPage() {
               </div>
             </div>
           </section>
+          </div>
         </div>
       </Container>
     </main>

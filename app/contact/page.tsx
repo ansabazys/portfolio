@@ -12,7 +12,7 @@ export const metadata = constructMetadata({
 
 export default function ContactPage() {
   return (
-    <main className="py-20 sm:py-28 md:py-32">
+    <main className="pt-12 sm:pt-20 md:pt-24 pb-20 sm:pb-28 md:pb-32">
       <Container size="md">
         {/* Header */}
         <header className="mb-14 sm:mb-20">

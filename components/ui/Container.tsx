@@ -15,14 +15,14 @@ export function Container({
 }: ContainerProps) {
   const sizeClasses = {
     sm: "max-w-xl",
-    md: "max-w-3xl",
+    md: "max-w-[712px]",
     lg: "max-w-5xl",
     full: "max-w-6xl",
   };
 
   return (
     <Component
-      className={`mx-auto w-full px-6 sm:px-8 md:px-12 ${sizeClasses[size]} ${className}`}
+      className={`mx-auto w-full px-6 sm:px-8 md:ml-0 md:mr-auto md:px-12 ${sizeClasses[size]} ${className}`}
     >
       {children}
     </Component>

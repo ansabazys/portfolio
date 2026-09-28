@@ -31,7 +31,7 @@ export function ProjectList({ projects }: ProjectListProps) {
             }}
           >
             <Link
-              href={`/work/${project.slug}`}
+              href={`/projects/${project.slug}`}
               onMouseEnter={() => setHoveredSlug(project.slug)}
               onMouseLeave={() => setHoveredSlug(null)}
               className="group block py-6 sm:py-8 transition-opacity duration-200"

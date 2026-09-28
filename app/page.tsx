@@ -8,7 +8,7 @@ export const metadata = constructMetadata({
 
 export default function HomePage() {
   return (
-    <main className="pt-20 sm:pt-28 md:pt-32 pb-6 sm:pb-8">
+    <main className="pt-12 sm:pt-20 md:pt-24 pb-6 sm:pb-8">
       <Hero />
     </main>
   );
