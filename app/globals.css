@@ -36,6 +36,7 @@
   --color-border-strong: #D5D3CC;
   --color-accent: #21201D;
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-libre-baskerville: var(--font-libre-baskerville), Georgia, serif;
 }
 
 html {
