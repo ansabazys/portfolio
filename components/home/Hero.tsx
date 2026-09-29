@@ -229,6 +229,36 @@ export function Hero() {
           </p>
         </motion.div>
 
+        {/* Current role */}
+        <motion.section
+          variants={itemVariants}
+          className="mt-10 grid gap-5"
+          aria-label="Current role"
+        >
+          <div className="flex items-baseline gap-1 text-sm text-[var(--text-muted)]">
+            <span>2026</span>
+            <span className="text-xs text-[var(--text-secondary)]">
+              Contract based
+            </span>
+          </div>
+          <div>
+            <h2 className="text-base font-medium text-[var(--text-primary)]">
+              Junior Software Developer
+            </h2>
+            <div className="mt-0.5 flex items-baseline justify-between gap-4 md:block">
+            <a
+              href="https://thynck.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="animated-underline text-base text-[var(--text-primary)]"
+            >
+              Thynck ↗
+            </a>
+            <p className="shrink-0 text-sm text-[var(--text-secondary)] md:mt-1">Calicut, India</p>
+            </div>
+          </div>
+        </motion.section>
+
         {/* Projects */}
         <motion.div variants={itemVariants} className="mt-10 pt-2">
           <h2 className="text-xs uppercase tracking-widest text-[#84837E] font-medium">

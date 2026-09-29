@@ -17,8 +17,8 @@ export default function AboutPage() {
         <div className="max-w-md">
           {/* Header */}
           <header className="mb-14 sm:mb-20">
-          <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
-            About
+          <h1 className="text-xl font-semibold tracking-tight text-[var(--text-primary)]">
+            about
           </h1>
           <div className="my-6 sm:my-8">
             <KineticPhotoStack />

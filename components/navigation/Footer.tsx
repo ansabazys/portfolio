@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/seo";
 
 export function Footer() {
@@ -14,7 +15,7 @@ export function Footer() {
 
   return (
     <footer className="mt-auto py-10 sm:py-12">
-      <div className="mx-auto w-full max-w-3xl px-6 sm:px-8 md:px-12">
+      <Container size="md">
         <div className="flex flex-col items-start gap-4 text-xs text-[#666561]">
           {/* Brand & Rights / Copyright */}
           <div className="space-y-0.5 select-none">
@@ -63,7 +64,7 @@ export function Footer() {
             </a>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

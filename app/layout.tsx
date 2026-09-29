@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Sidebar } from "@/components/navigation/Sidebar";
-import { Footer } from "@/components/navigation/Footer";
+import { PublicChrome } from "@/components/navigation/PublicChrome";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { siteConfig } from "@/lib/seo";
 
@@ -71,13 +70,7 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           />
-          <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col md:flex-row">
-            <Sidebar />
-            <div className="flex-1 flex flex-col min-w-0 min-h-0">
-              <div className="flex-1 flex flex-col min-h-0">{children}</div>
-              <Footer />
-            </div>
-          </div>
+          <PublicChrome>{children}</PublicChrome>
           {process.env.NODE_ENV === "production" && (
             <Script
               defer

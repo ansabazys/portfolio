@@ -16,12 +16,9 @@ export default function ContactPage() {
       <Container size="md">
         {/* Header */}
         <header className="mb-14 sm:mb-20">
-          <h1 className="text-xs uppercase tracking-widest text-[#84837E] font-medium select-none">
-            Contact
-          </h1>
-          <h2 className="mt-4 text-2xl font-medium tracking-tight text-[#141413]">
+          <h1 className="text-xl font-semibold tracking-tight text-[var(--text-primary)]">
             Have a project in mind?
-          </h2>
+          </h1>
           <p className="mt-2 text-base text-[#5E5D59] leading-relaxed max-w-lg">
             Tell me what you&apos;re building. I am always happy to discuss new ideas,
             architectural challenges, or potential collaborations.
