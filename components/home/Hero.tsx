@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/seo";
 import { projects } from "@/lib/projects";
 import { FAQAccordion } from "@/components/home/FAQAccordion";
-import { BrandIcon, BusinessIcon, CreateIcon, DesignIcon, FreelanceIcon, GlobeIcon, TogetherIcon } from "@/components/icons";
+import { BrandIcon, BusinessIcon, CreateIcon, DesignIcon, EmailIcon, FreelanceIcon, GithubIcon, GlobeIcon, InstagramIcon, TogetherIcon } from "@/components/icons";
 
 const projectSummaries: Record<string, string> = {
   traqory: "Privacy-first analytics for fast, actionable product insights.",
@@ -201,30 +201,45 @@ export function Hero() {
           </p>
           <p>
             Explore my work on{" "}
-            <a
-              href={siteConfig.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="animated-underline text-[var(--text-primary)]"
-            >
-              GitHub
-            </a>
+            <span className="whitespace-nowrap">
+              <span className="inline-flex items-center align-[-0.15em] mr-[5px]">
+                <GithubIcon size={17} />
+              </span>
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="animated-underline text-[var(--text-primary)]"
+              >
+                GitHub
+              </a>
+            </span>
             , see the creative things I share on{" "}
-            <a
-              href={siteConfig.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="animated-underline text-[var(--text-primary)]"
-            >
-              Instagram
-            </a>
+            <span className="whitespace-nowrap">
+              <span className="inline-flex items-center align-[-0.15em] mr-[5px]">
+                <InstagramIcon size={17} />
+              </span>
+              <a
+                href={siteConfig.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="animated-underline text-[var(--text-primary)]"
+              >
+                Instagram
+              </a>
+            </span>
             , or{" "}
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="animated-underline text-[var(--text-primary)]"
-            >
-              email me
-            </a>{" "}
+            <span className="whitespace-nowrap">
+              <span className="inline-flex items-center align-[-0.15em] mr-[5px]">
+                <EmailIcon size={17} />
+              </span>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="animated-underline text-[var(--text-primary)]"
+              >
+                email me
+              </a>
+            </span>{" "}
             to get in touch.
           </p>
         </motion.div>
