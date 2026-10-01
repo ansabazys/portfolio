@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/lib/seo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/Logo";
-import { BotIcon, TrashIcon } from "@/components/icons";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -66,8 +65,18 @@ const itemVariants = {
 
 export function Sidebar() {
   const pathname = usePathname();
-  const isChat = pathname === "/chat" || pathname?.startsWith("/chat/");
+  const shouldReduceMotion = useReducedMotion();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const headerTarget = headerVisible
+    ? { opacity: 1, y: 0 }
+    : { opacity: 0, y: -16 };
+  const headerTransition = (enterDelay: number, exitDelay: number) => ({
+    duration: shouldReduceMotion ? 0 : 0.4,
+    delay: shouldReduceMotion ? 0 : headerVisible ? enterDelay : exitDelay,
+    ease: [0.22, 1, 0.36, 1] as const,
+  });
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -81,10 +90,28 @@ export function Sidebar() {
     };
   }, [mobileMenuOpen]);
 
-  // Close menu automatically on route change
+  // Hide the header while moving down and replay its entrance while moving up.
   useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY <= 8) {
+        setHeaderVisible(true);
+      } else if (scrollDelta > 8) {
+        setHeaderVisible(false);
+      } else if (scrollDelta < -8) {
+        setHeaderVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close menu on Escape key press
   useEffect(() => {
@@ -98,10 +125,23 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile Sticky Bar with Hamburger Button & Theme Toggle */}
-      <div className="md:hidden sticky top-0 z-40 pointer-events-none">
+      <div className="md:hidden sticky top-0 z-40 relative isolate overflow-hidden pointer-events-none">
+        <motion.div
+          aria-hidden="true"
+          initial={false}
+          animate={{ opacity: headerVisible ? 1 : 0 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 -z-10 bg-[#FAFAF8]/95 backdrop-blur-md dark:bg-[#121211]/95"
+        />
         <div className="flex items-center justify-between gap-2 w-full p-6 bg-transparent">
           {/* Logo on Left */}
-          <motion.div whileTap={{ scale: 0.94 }} className="pointer-events-auto">
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
+            animate={headerTarget}
+            transition={headerTransition(0, 0.3)}
+            whileTap={{ scale: 0.94 }}
+            className="pointer-events-auto"
+          >
             <Link
               href="/"
               className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center hover:bg-white/80 dark:hover:bg-[#121211]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
@@ -113,7 +153,13 @@ export function Sidebar() {
 
           {/* Right Controls */}
           <div className="flex items-center gap-2">
-            <motion.div whileTap={{ scale: 0.94 }} className="pointer-events-auto">
+            <motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
+              animate={headerTarget}
+              transition={headerTransition(0.1, 0.2)}
+              whileTap={{ scale: 0.94 }}
+              className="pointer-events-auto"
+            >
               <Link
                 href="/contact"
                 className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
@@ -121,52 +167,48 @@ export function Sidebar() {
                 Let&apos;s Talk
               </Link>
             </motion.div>
-            <div className="pointer-events-auto">
+            <motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
+              animate={headerTarget}
+              transition={headerTransition(0.2, 0.1)}
+              className="pointer-events-auto"
+            >
               <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
-            </div>
-            {isChat && (
+            </motion.div>
+            <motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
+              animate={headerTarget}
+              transition={headerTransition(0.3, 0)}
+              className="pointer-events-auto"
+            >
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.92 }}
-                onClick={() => {
-                  window.dispatchEvent(new CustomEvent("clear-chat"));
-                }}
-                className="pointer-events-auto w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-red-500 dark:text-red-400 hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-red-600 dark:hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all cursor-pointer"
-                aria-label="Clear chat"
-                title="Clear chat"
+                onClick={() => setMobileMenuOpen(true)}
+                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+                aria-expanded={mobileMenuOpen}
+                aria-label="Open navigation menu"
               >
-                <div className="relative w-6 h-6 flex items-center justify-center text-red-500 dark:text-red-400">
-                  <TrashIcon size={20} />
+                <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-[#141413] dark:text-[#EDEDEB]"
+                  >
+                    <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
+                    <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
+                    <path d="M4.18 18.82Q12 18.75 20.03 19.02" />
+                  </svg>
                 </div>
               </motion.button>
-            )}
-            <motion.button
-              type="button"
-              whileTap={{ scale: 0.92 }}
-              onClick={() => setMobileMenuOpen(true)}
-              className="pointer-events-auto w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
-              aria-expanded={mobileMenuOpen}
-              aria-label="Open navigation menu"
-            >
-              <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-[#141413] dark:text-[#EDEDEB]"
-                >
-                  <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
-                  <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
-                  <path d="M4.18 18.82Q12 18.75 20.03 19.02" />
-                </svg>
-              </div>
-            </motion.button>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -327,30 +369,6 @@ export function Sidebar() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Floating Bottom Right Bot Icon */}
-      <AnimatePresence>
-        {!mobileMenuOpen && !isChat && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden fixed bottom-6 right-6 z-40"
-          >
-            <Link href="/chat" aria-label="Open AI Chat Assistant">
-              <motion.div
-                whileTap={{ scale: 0.92 }}
-                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
-              >
-                <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
-                  <BotIcon size={20} />
-                </div>
-              </motion.div>
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Desktop Left Sidebar (Vertical Navigation) */}
       <aside
         aria-label="Sidebar Navigation"
@@ -383,55 +401,10 @@ export function Sidebar() {
           })}
         </nav>
 
-        {/* Theme Toggle & Bot Icon */}
-        <div className="mt-6 flex items-center gap-3">
+        <div className="mt-6">
           <ThemeToggle className="w-auto h-auto p-0 justify-start" />
-          <Link
-            href="/chat"
-            aria-label="Open AI Chat Assistant"
-            title="AI Chat Assistant"
-            className="group relative flex items-center justify-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 rounded"
-          >
-            <motion.div
-              whileTap={{ scale: 0.88 }}
-              whileHover={{
-                scale: 1.18,
-                transition: { type: "spring", stiffness: 350, damping: 14 },
-              }}
-              className="flex items-center justify-center origin-center cursor-pointer"
-            >
-              <BotIcon
-                size={18}
-                className={`transition-colors ${
-                  isChat
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-[#141413] dark:text-[#EDEDEB] group-hover:text-blue-600 dark:group-hover:text-blue-400"
-                }`}
-              />
-            </motion.div>
-          </Link>
         </div>
       </aside>
-
-      {/* Desktop Fixed Clear Chat Button */}
-      {isChat && (
-        <div className="hidden md:block fixed top-6 right-8 lg:top-8 lg:right-12 z-40">
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.92 }}
-            onClick={() => {
-              window.dispatchEvent(new CustomEvent("clear-chat"));
-            }}
-            className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-red-500 dark:text-red-400 hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-red-600 dark:hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-all cursor-pointer"
-            aria-label="Clear chat"
-            title="Clear chat"
-          >
-            <div className="relative w-6 h-6 flex items-center justify-center text-red-500 dark:text-red-400">
-              <TrashIcon size={20} />
-            </div>
-          </motion.button>
-        </div>
-      )}
     </>
   );
 }

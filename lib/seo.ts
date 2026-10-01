@@ -10,6 +10,7 @@ export const siteConfig = {
   availability: "Available for projects",
   currentMood: "Exploring ideas,\nbuilding what feels right.",
   email: "ansabazys@gmail.com",
+  x: "https://x.com/ansabazys",
   github: "https://github.com/ansabazys",
   linkedin: "https://linkedin.com/in/ansabazys",
   instagram: "https://instagram.com/ansabazys",

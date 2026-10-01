@@ -303,13 +303,27 @@ export function Hero() {
             Have a project in mind, something that needs a better direction, or simply an idea you&apos;d like to explore? Tell me a little about it and let&apos;s see what we can make together.
           </p>
 
-          <div className="mt-5">
+          <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-base text-[#5E5D59]">
             <Link
               href="/contact"
-              className="animated-underline text-base font-medium text-[#141413]"
+              className="animated-underline"
             >
-              Start a conversation
+              ↗ start a project
             </Link>
+            <a
+              href={`mailto:${siteConfig.email}?subject=${encodeURIComponent("Project inquiry")}`}
+              className="animated-underline"
+            >
+              ↗ send an email
+            </a>
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="animated-underline"
+            >
+              ↗ connect on LinkedIn
+            </a>
           </div>
         </motion.section>
       </motion.div>

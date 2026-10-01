@@ -2,17 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/seo";
 
 export function Footer() {
-  const pathname = usePathname();
-
-  if (pathname === "/chat" || pathname?.startsWith("/chat/")) {
-    return null;
-  }
-
   return (
     <footer className="mt-auto py-10 sm:py-12">
       <Container size="md">
