@@ -126,13 +126,6 @@ export function Sidebar() {
     <>
       {/* Mobile Sticky Bar with Hamburger Button & Theme Toggle */}
       <div className="md:hidden sticky top-0 z-40 relative isolate overflow-hidden pointer-events-none">
-        <motion.div
-          aria-hidden="true"
-          initial={false}
-          animate={{ opacity: headerVisible ? 1 : 0 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 -z-10 bg-[#FAFAF8]/95 backdrop-blur-md dark:bg-[#121211]/95"
-        />
         <div className="flex items-center justify-between gap-2 w-full p-6 bg-transparent">
           {/* Logo on Left */}
           <motion.div
