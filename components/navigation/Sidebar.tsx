@@ -69,14 +69,6 @@ export function Sidebar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
   const lastScrollY = useRef(0);
-  const headerTarget = headerVisible
-    ? { opacity: 1, y: 0 }
-    : { opacity: 0, y: -16 };
-  const headerTransition = (enterDelay: number, exitDelay: number) => ({
-    duration: shouldReduceMotion ? 0 : 0.4,
-    delay: shouldReduceMotion ? 0 : headerVisible ? enterDelay : exitDelay,
-    ease: [0.22, 1, 0.36, 1] as const,
-  });
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -90,15 +82,15 @@ export function Sidebar() {
     };
   }, [mobileMenuOpen]);
 
-  // Hide the header while moving down and replay its entrance while moving up.
+  // Hide the header while scrolling down and show it while scrolling up.
   useEffect(() => {
-    lastScrollY.current = window.scrollY;
+    lastScrollY.current = Math.max(0, window.scrollY);
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = Math.max(0, window.scrollY);
       const scrollDelta = currentScrollY - lastScrollY.current;
 
-      if (currentScrollY <= 8) {
+      if (currentScrollY <= 10) {
         setHeaderVisible(true);
       } else if (scrollDelta > 8) {
         setHeaderVisible(false);
@@ -125,83 +117,56 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile Sticky Bar with Hamburger Button & Theme Toggle */}
-      <div className="md:hidden sticky top-0 z-40 relative isolate overflow-hidden pointer-events-none">
-        <div className="flex items-center justify-between gap-2 w-full p-6 bg-transparent">
+      <div
+        className={`md:hidden sticky top-0 z-40 relative isolate w-full ${
+          shouldReduceMotion ? "" : "transition-transform duration-300 ease-in-out"
+        } ${headerVisible ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
+      >
+        <div className="flex items-center justify-between gap-2 w-full p-6">
           {/* Logo on Left */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
-            animate={headerTarget}
-            transition={headerTransition(0, 0.3)}
-            whileTap={{ scale: 0.94 }}
-            className="pointer-events-auto"
+          <Link
+            href="/"
+            className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center hover:bg-white/80 dark:hover:bg-[#121211]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+            aria-label="Ansab Azys - Home"
           >
-            <Link
-              href="/"
-              className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center hover:bg-white/80 dark:hover:bg-[#121211]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
-              aria-label="Ansab Azys - Home"
-            >
-              <Logo className="h-5 w-5" size={20} />
-            </Link>
-          </motion.div>
+            <Logo className="h-5 w-5" size={20} />
+          </Link>
 
           {/* Right Controls */}
           <div className="flex items-center gap-2">
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
-              animate={headerTarget}
-              transition={headerTransition(0.1, 0.2)}
-              whileTap={{ scale: 0.94 }}
-              className="pointer-events-auto"
+            <Link
+              href="/contact"
+              className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
             >
-              <Link
-                href="/contact"
-                className="h-10 px-3.5 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-xs font-medium text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer whitespace-nowrap"
-              >
-                Let&apos;s Talk
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
-              animate={headerTarget}
-              transition={headerTransition(0.2, 0.1)}
-              className="pointer-events-auto"
+              Let&apos;s Talk
+            </Link>
+            <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Open navigation menu"
             >
-              <ThemeToggle className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent hover:bg-white/80 dark:hover:bg-[#121211]/70" />
-            </motion.div>
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
-              animate={headerTarget}
-              transition={headerTransition(0.3, 0)}
-              className="pointer-events-auto"
-            >
-              <motion.button
-                type="button"
-                whileTap={{ scale: 0.92 }}
-                onClick={() => setMobileMenuOpen(true)}
-                className="w-10 h-10 rounded-full bg-white/60 dark:bg-[#121211]/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 dark:border-transparent flex items-center justify-center text-[#141413] dark:text-[#EDEDEB] hover:bg-white/80 dark:hover:bg-[#121211]/70 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all cursor-pointer"
-                aria-expanded={mobileMenuOpen}
-                aria-label="Open navigation menu"
-              >
-                <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-[#141413] dark:text-[#EDEDEB]"
-                  >
-                    <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
-                    <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
-                    <path d="M4.18 18.82Q12 18.75 20.03 19.02" />
-                  </svg>
-                </div>
-              </motion.button>
-            </motion.div>
+              <div className="relative w-6 h-6 flex items-center justify-center text-[#141413] dark:text-[#EDEDEB]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-[#141413] dark:text-[#EDEDEB]"
+                >
+                  <path d="M4.07 4.88Q12 5.42 20.11 5.14" />
+                  <path d="M4.14 11.88Q12 11.33 19.84 12.17" />
+                  <path d="M4.18 18.82Q12 18.75 20.03 19.02" />
+                </svg>
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -394,9 +359,6 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="mt-6">
-          <ThemeToggle className="w-auto h-auto p-0 justify-start" />
-        </div>
       </aside>
     </>
   );

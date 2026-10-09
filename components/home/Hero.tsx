@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/seo";
 import { projects } from "@/lib/projects";
 import { FAQAccordion } from "@/components/home/FAQAccordion";
 import { BrandIcon, BusinessIcon, CreateIcon, DesignIcon, FreelanceIcon, GlobeIcon, TogetherIcon } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const projectSummaries: Record<string, string> = {
   traqory: "Privacy-first analytics for fast, actionable product insights.",
@@ -131,13 +132,16 @@ export function Hero() {
         className="w-full"
       >
         {/* Name & Subtitle */}
-        <motion.div variants={itemVariants}>
-          <h1 className="text-lg font-semibold text-[#141413] tracking-tight">
-            Ansab Azys
-          </h1>
-          <p className="text-sm text-[#84837E] mt-0.5">
-            Designer &amp; Full-Stack Developer
-          </p>
+        <motion.div variants={itemVariants} className="flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-semibold text-[#141413] tracking-tight">
+              Ansab Azys
+            </h1>
+            <p className="text-sm text-[#84837E] mt-0.5">
+              Designer &amp; Full-Stack Developer
+            </p>
+          </div>
+          <ThemeToggle className="hidden md:flex" />
         </motion.div>
 
         {/* Bio Paragraphs */}
