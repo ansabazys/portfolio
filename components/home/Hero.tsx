@@ -53,7 +53,7 @@ const featuredProjects: FeaturedProject[] = [
 function FeaturedProjectRow({ project }: { project: FeaturedProject }) {
   const content = (
     <>
-      <h3 className="font-semibold text-[var(--text-primary)] underline decoration-1 decoration-transparent underline-offset-4 transition-[color,text-decoration-color] group-hover:text-blue-600 group-hover:decoration-current dark:group-hover:text-blue-400">
+      <h3 className="shrink-0 whitespace-nowrap font-semibold text-[var(--text-primary)] underline decoration-1 decoration-transparent underline-offset-4 transition-[color,text-decoration-color] group-hover:text-blue-600 group-hover:decoration-current dark:group-hover:text-blue-400">
         {project.title}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ function FeaturedProjectRow({ project }: { project: FeaturedProject }) {
           <path d="M7.1 16.93Q12.6 12.6 17.18 6.87" />
         </svg>
       </h3>
-      <p className="text-base leading-snug text-[var(--text-secondary)]">
+      <p className="min-w-0 flex-1 truncate text-base leading-snug text-[var(--text-secondary)]">
         {project.description}
       </p>
     </>
@@ -82,7 +82,7 @@ function FeaturedProjectRow({ project }: { project: FeaturedProject }) {
     return (
       <a
         href={project.href}
-        className="group flex flex-wrap items-baseline gap-x-3 gap-y-0.5 text-base"
+        className="group flex flex-nowrap items-baseline gap-x-3 text-base"
       >
         {content}
       </a>
@@ -90,7 +90,7 @@ function FeaturedProjectRow({ project }: { project: FeaturedProject }) {
   }
 
   return (
-    <article className="group flex flex-wrap items-baseline gap-x-3 gap-y-0.5 text-base">
+    <article className="group flex flex-nowrap items-baseline gap-x-3 text-base">
       {content}
     </article>
   );
