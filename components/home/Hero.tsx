@@ -9,8 +9,6 @@ import { projects } from "@/lib/projects";
 import { FAQAccordion } from "@/components/home/FAQAccordion";
 import { BrandIcon, BusinessIcon, CreateIcon, DesignIcon, FreelanceIcon, GlobeIcon, TogetherIcon } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { Blobatar } from "@blobatar/react";
-import { useGaze } from "@blobatar/react/gaze";
 
 const projectSummaries: Record<string, string> = {
   traqory: "Privacy-first analytics for fast, actionable product insights.",
@@ -98,7 +96,6 @@ function FeaturedProjectRow({ project }: { project: FeaturedProject }) {
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const { ref: blobatarRef } = useGaze({ travel: 3, lookAt: "pointer" });
 
   const containerVariants = {
     hidden: { opacity: shouldReduceMotion ? 1 : 0 },
@@ -137,18 +134,6 @@ export function Hero() {
         {/* Name & Subtitle */}
         <motion.div variants={itemVariants} className="flex items-center justify-between">
           <div className="flex items-center gap-3.5 sm:gap-4">
-            <div className="relative shrink-0 flex items-center justify-center">
-              <Blobatar
-                ref={blobatarRef}
-                name="Ansab Azys"
-                background="circle"
-                palette={{ bg: "#8ca1fc", head: "#8ca1fc" }}
-                traits={{ shape: 0.1 }}
-                animate={shouldReduceMotion ? undefined : "always"}
-                size={48}
-                className="h-12 w-12 rounded-full select-none transition-transform duration-200 hover:scale-105"
-              />
-            </div>
             <div>
               <h1 className="text-lg font-semibold text-[#141413] tracking-tight">
                 Ansab Azys
